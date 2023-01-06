@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "868419869331",
+    "project_id": "liburan-1",
+    "storage_bucket": "liburan-1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868419869331:android:31b8d746dfbbbb38f68b66",
+        "android_client_info": {
+          "package_name": "com.proyekprib.liburan1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "868419869331-b0r5vq39tb4bvevui096rd1v1l7987a4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3S1evBaQrdQv5gOBpdn2JWn8c0AzKSFU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "868419869331-b0r5vq39tb4bvevui096rd1v1l7987a4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
