@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:liburan/cubit/auth_cubit.dart';
 
 import 'package:liburan/theme/theme.dart';
 
@@ -35,9 +36,6 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin{
   @override
   void initState(){
     Timer(const Duration(seconds: delay), (){
-
-      // TODO: Implement Authentication Cubit
-      /*
       User? user = FirebaseAuth.instance.currentUser;
 
       if (user == null){
@@ -45,12 +43,11 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin{
             context, '/landing-page', (route) => false);
       }
 
-      else{
-      context.read<AuthCubit>().getCurrentUser(user.uid);
-      Navigator.pushNamedAndRemoveUntil(
+      else {
+        context.read<AuthCubit>().getCurrentUser(user.uid);
+        Navigator.pushNamedAndRemoveUntil(
             context, '/home-page', (route) => false);
-      {
-      */
+      }
 
       Navigator.pushNamedAndRemoveUntil(
           context, '/landing-page', (route) => false);

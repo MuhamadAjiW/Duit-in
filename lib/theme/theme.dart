@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 const Color black = Color.fromARGB(255, 0, 0, 0);
 const Color white = Color.fromARGB(255, 255, 255, 255);
 const Color red = Color.fromARGB(255, 255, 100, 100);
+const Color blue = Color.fromARGB(255, 100, 170, 255);
 
 //Fonts
 TextStyle defaultTextTheme = GoogleFonts.comfortaa(color: Colors.black);

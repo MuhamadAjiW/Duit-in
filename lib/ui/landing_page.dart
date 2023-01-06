@@ -34,7 +34,7 @@ class _LandingPageState extends State<LandingPage>{
               widthVal: 300,
               heightVal: 50,
               buttonColor: Colors.transparent,
-              text: 'Sign up',
+              text: 'Sign in',
               textSize: 12,
               textColor: black,
               onPressed: (){
@@ -47,7 +47,7 @@ class _LandingPageState extends State<LandingPage>{
           listener: (context, state){
             if (state is AuthSuccess){
               Navigator.pushNamedAndRemoveUntil(
-                  context, '/home_page', (route) => false);
+                  context, '/home-page', (route) => false);
             } else if (state is AuthFailed){
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text(state.error),

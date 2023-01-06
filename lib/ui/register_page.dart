@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:liburan/cubit/auth_cubit.dart';
 
 import 'package:liburan/theme/theme.dart';
-import 'package:liburan/ui/home_page.dart';
 import 'package:liburan/ui/landing_page.dart';
 import 'package:liburan/widgets/custominput.dart';
 import 'package:liburan/widgets/textbutton.dart';
@@ -49,7 +48,7 @@ class _RegisterPageState extends State<RegisterPage>{
           listener: (context, state){
             if (state is AuthSuccess){
               Navigator.pushNamedAndRemoveUntil(
-                  context, '/home_page', (route) => false);
+                  context, '/home-page', (route) => false);
             } else if (state is AuthFailed){
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text(state.error),
