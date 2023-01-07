@@ -4,7 +4,7 @@ import 'package:liburan/theme/theme.dart';
 import 'package:liburan/ui/home_page.dart';
 import 'package:liburan/ui/data_page.dart';
 import 'package:liburan/ui/logs_page.dart';
-import 'package:liburan/ui/profile_page.dart';
+import 'package:liburan/ui/settings_page.dart';
 
 class NavPage extends StatefulWidget{
   const NavPage({Key? key}) : super(key: key);
@@ -51,9 +51,8 @@ class _NavState extends State<NavPage>{
             label: 'Logs',
             activeIcon: Icon(Icons.receipt_sharp)),
         BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            label: 'Profile',
-            activeIcon: Icon(Icons.person)),
+            icon: Icon(Icons.settings),
+            label: 'Settings'),
       ],
       onTap: (index){
         setState((){
@@ -66,7 +65,7 @@ class _NavState extends State<NavPage>{
     HomePage(),
     DataPage(),
     LogsPage(),
-    ProfilePage(),
+    SettingsPage(),
   ];
 
   final floatingTab = [

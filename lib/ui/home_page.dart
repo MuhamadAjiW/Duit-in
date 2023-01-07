@@ -15,17 +15,17 @@ class _HomePageState extends State<HomePage>{
     return BlocBuilder<AuthCubit, AuthState>(builder: (context, state){
       if (state is AuthSuccess){
         return Container(
-          margin: EdgeInsets.symmetric(horizontal: 20),
+          margin: EdgeInsets.symmetric(horizontal: 5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('Hello ', style: defaultTextTheme.copyWith(
-                fontSize: 26,
+                fontSize: 32,
                 fontWeight: light,
               )),
               SizedBox(height: 10,),
               Text('${state.user.name}', style: defaultTextTheme.copyWith(
-                fontSize: 26,
+                fontSize: 32,
                 fontWeight: medium,
               )),
             ],

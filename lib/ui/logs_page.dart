@@ -12,24 +12,18 @@ class LogsPage extends StatefulWidget{
 
 class _LogsPageState extends State<LogsPage>{
   Widget openingPlate(){
-    return BlocBuilder<AuthCubit, AuthState>(builder: (context, state){
-      if (state is AuthSuccess){
-        return Container(
-          margin: EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Logs Placeholder', style: defaultTextTheme.copyWith(
-                fontSize: 26,
-                fontWeight: light,
-              )),
-            ],
-          ),
-        );
-      }
-
-      else return SizedBox();
-    });
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Logs', style: defaultTextTheme.copyWith(
+            fontSize: 32,
+            fontWeight: light,
+          )),
+        ],
+      ),
+    );
   }
 
   @override

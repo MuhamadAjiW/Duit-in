@@ -9,9 +9,11 @@ const Color blue = Color.fromARGB(255, 100, 170, 255);
 
 //Fonts
 TextStyle defaultTextTheme = GoogleFonts.comfortaa(color: Colors.black);
+TextStyle grayTextTheme = GoogleFonts.comfortaa(color: Color(0xff999999));
 
 //Font Size
 const FontWeight light = FontWeight.w300;
+const FontWeight regular = FontWeight.w400;
 const FontWeight medium = FontWeight.w500;
 
 //image strings

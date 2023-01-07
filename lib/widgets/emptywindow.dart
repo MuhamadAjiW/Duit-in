@@ -4,20 +4,20 @@ import 'package:liburan/cubit/auth_cubit.dart';
 
 import 'package:liburan/theme/theme.dart';
 
-class DataPage extends StatefulWidget{
-  const DataPage({Key? key}) : super(key: key);
+class EmptyWinPage extends StatefulWidget{
+  const EmptyWinPage({Key? key}) : super(key: key);
   @override
-  State<DataPage> createState() => _DataPageState();
+  State<EmptyWinPage> createState() => _PageState();
 }
 
-class _DataPageState extends State<DataPage>{
+class _PageState extends State<EmptyWinPage>{
   Widget openingPlate(){
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 5),
+      margin: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Data', style: defaultTextTheme.copyWith(
+          Text('Work in Progress', style: defaultTextTheme.copyWith(
             fontSize: 32,
             fontWeight: light,
           )),
