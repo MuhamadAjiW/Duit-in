@@ -9,7 +9,7 @@ import 'package:liburan/cubit/auth_cubit.dart';
 
 //import ui
 import 'package:liburan/ui/splash_page.dart';
-import 'package:liburan/ui/home_page.dart';
+import 'package:liburan/ui/navigation_page.dart';
 import 'package:liburan/ui/landing_page.dart';
 
 
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         home: SplashPage(),
         debugShowCheckedModeBanner: false,
         routes: {
-          '/home-page': (context) => HomePage(),
+          '/nav-page': (context) => NavPage(),
           '/landing-page': (context) => LandingPage()
         },
       )

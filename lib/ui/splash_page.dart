@@ -46,7 +46,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin{
       else {
         context.read<AuthCubit>().getCurrentUser(user.uid);
         Navigator.pushNamedAndRemoveUntil(
-            context, '/home-page', (route) => false);
+            context, '/nav-page', (route) => false);
       }
 
       Navigator.pushNamedAndRemoveUntil(

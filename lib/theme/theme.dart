@@ -16,3 +16,6 @@ const FontWeight medium = FontWeight.w500;
 
 //image strings
 const String logoItb = 'assets/images/logo_itb.png';
+
+//constanta yang lainnya
+const nullWidget = SizedBox.shrink();

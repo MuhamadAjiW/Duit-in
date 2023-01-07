@@ -3,10 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:liburan/cubit/auth_cubit.dart';
 
 import 'package:liburan/theme/theme.dart';
-import 'package:liburan/ui/home_page.dart';
 import 'package:liburan/ui/register_page.dart';
 import 'package:liburan/widgets/custominput.dart';
-import 'package:liburan/widgets/textbutton.dart';
+import 'package:liburan/widgets/customtextbutton.dart';
 
 class LandingPage extends StatefulWidget{
   LandingPage({Key? key}) : super(key: key);
@@ -47,7 +46,7 @@ class _LandingPageState extends State<LandingPage>{
           listener: (context, state){
             if (state is AuthSuccess){
               Navigator.pushNamedAndRemoveUntil(
-                  context, '/home-page', (route) => false);
+                  context, '/nav-page', (route) => false);
             } else if (state is AuthFailed){
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text(state.error),
