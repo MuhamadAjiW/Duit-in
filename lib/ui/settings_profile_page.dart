@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:liburan/cubit/auth_cubit.dart';
 import 'package:liburan/theme/theme.dart';
+import 'package:liburan/ui/settings_change_name.dart';
+
 
 class ProfilePage extends StatefulWidget{
   const ProfilePage({Key? key}) : super(key: key);
@@ -37,6 +41,110 @@ class _ProfilePageState extends State<ProfilePage>{
     );
   }
 
+  Widget profileBlock(){
+    return BlocBuilder<AuthCubit, AuthState>(builder: (context, state){
+      if (state is AuthSuccess){
+        return Center(
+          child: Container(
+            margin: EdgeInsets.symmetric(horizontal: 5),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  width: 200,
+                  height: 200,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(image: AssetImage(logoItb))
+                  ),
+                ),
+                SizedBox(height: 20,),
+                Text('${state.user.name}', style: defaultTextTheme.copyWith(
+                  fontSize: 28,
+                  fontWeight: medium,
+                )),
+                SizedBox(height: 10,),
+                Text('${state.user.email}', style: grayTextTheme.copyWith(
+                  fontSize: 18,
+                  fontWeight: medium,
+                )),
+              ],
+            ),
+          ),
+        );
+      }
+      else return SizedBox();
+    });
+  }
+
+  Widget nameButton(){
+          return Center(
+            child: Container(
+              width: 300,
+              decoration: BoxDecoration(
+                color: white,
+                borderRadius: BorderRadius.circular(15),
+                border: Border.all(
+                    color: gray,
+                    width: 1,
+                ),
+              ),
+              child: TextButton(
+                onPressed: (){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => NameChangePage()));
+                },
+                child: Text(
+                  'Change Name',
+                  style: defaultTextTheme,
+                ),
+              ),
+            ),
+          );
+  }
+
+  Widget logoutButton(){
+    return BlocConsumer<AuthCubit, AuthState>(
+        builder: (context, state) {
+          if (state is AuthLoading){
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return Center(
+            child: Container(
+              width: 300,
+              decoration: BoxDecoration(
+                  color: red,
+                  borderRadius: BorderRadius.circular(15),
+              ),
+              child: TextButton(
+                onPressed: (){
+                  context.read<AuthCubit>().signOut();
+                },
+                child: Text(
+                  'Log Out',
+                  style: defaultTextTheme.copyWith(color: white),
+                ),
+              ),
+            ),
+          );
+        },
+        listener: (context, state) {
+          if (state is AuthFailed){
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(state.error),
+              backgroundColor: red,
+            ));
+          } else if (state is AuthInitial){
+            Navigator.pushNamedAndRemoveUntil(
+                context, '/landing-page', (route) => false);
+          }
+        }
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +153,12 @@ class _ProfilePageState extends State<ProfilePage>{
             children: [
               SizedBox(height: 60,),
               openingPlate(),
+              SizedBox(height: 20,),
+              profileBlock(),
+              SizedBox(height: 40,),
+              nameButton(),
+              SizedBox(height: 10,),
+              logoutButton(),
             ],
           ),
         )

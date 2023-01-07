@@ -87,7 +87,7 @@ class _SettingsPageState extends State<SettingsPage>{
                       ),
                       SettingsButton(
                         buttonText: "Security",
-                        buttonDesc: "Change password",
+                        buttonDesc: "Change email and password",
                         onPressed: () {
                           Navigator.push(
                               context,
