@@ -30,4 +30,18 @@ class LogService {
       throw e;
     }
   }
+
+  Future<void> readLogs({
+    required String uid,
+  }) async {
+    try {
+      await _logsReference.get().then(
+              (snapshot) => snapshot.docs.forEach((element) {
+                print(element.reference); //TODO: implement logreader
+              })
+      );
+    } catch(e){
+      throw e;
+    }
+  }
 }

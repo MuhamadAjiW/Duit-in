@@ -13,6 +13,14 @@ class LogModel extends Equatable{
     required this.waktu,
   });
 
+  static LogModel fromJson(Map<String, dynamic> json){
+    return LogModel(
+        uid: json['uid'],
+        nilai: json['nilai'],
+        keterangan: json['keterangan'],
+        waktu: json['waktu']);
+  }
+
   @override
   List<Object?> get props {
     return [uid, nilai, keterangan, waktu];
