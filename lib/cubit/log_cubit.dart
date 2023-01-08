@@ -10,18 +10,20 @@ class LogCubit extends Cubit<LogState> {
   LogCubit() : super(LogInitial());
 
   void addLog({
-    required String keterangan,
-    required int nilai,
     required String uid,
-    required DateTime waktu
+    required String nilaiRaw,
+    required String keterangan,
+    required DateTime waktu,
   }) async {
     try{
       emit(LogLoading());
       LogModel log =
-        await LogService().addLog(keterangan: keterangan, nilai: nilai, uid: uid, waktu: waktu);
+        await LogService().addLog(uid: uid, nilaiRaw: nilaiRaw, keterangan: keterangan, waktu: waktu);
       emit(LogSuccess(log));
+      emit(LogInitial());
     } catch(e){
       emit(LogFailed(e.toString()));
+      emit(LogInitial());
     }
   }
 }

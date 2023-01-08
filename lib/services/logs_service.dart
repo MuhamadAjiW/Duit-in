@@ -7,18 +7,24 @@ class LogService {
     FirebaseFirestore.instance.collection('logs');
 
   Future<LogModel> addLog({
-    required String keterangan,
-    required int nilai,
     required String uid,
+    required String nilaiRaw,
+    required String keterangan,
     required DateTime waktu,
   }) async {
     try{
+      final nilai = int.parse(nilaiRaw);
       LogModel log = LogModel(
-          keterangan: keterangan,
-          nilai: nilai,
           uid: uid,
+          nilai: nilai,
+          keterangan: keterangan,
           waktu: DateTime.now());
-      await _logsReference.doc(waktu.toString()).set(log);
+      await _logsReference.doc(waktu.toString()).set({
+        'uid': uid,
+        'nilai': nilai,
+        'keterangan' : keterangan,
+        'waktu' : waktu,
+      });
       return log;
     } catch (e){
       throw e;

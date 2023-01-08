@@ -14,7 +14,7 @@ class AddLogPage extends StatefulWidget{
 }
 
 class _AddLogState extends State<AddLogPage>{
-  final TextEditingController testController = TextEditingController(text: '');
+  final TextEditingController valController = TextEditingController(text: '');
 
   Widget openingPlate(){
     return Container(
@@ -44,7 +44,74 @@ class _AddLogState extends State<AddLogPage>{
     );
   }
 
+  Widget inputVal() {
+    return Container(
+        margin: EdgeInsets.symmetric(horizontal: 25),
+        child: TextFormField(
+          controller: valController,
+          obscureText: false,
+          cursorColor: black,
+          decoration: InputDecoration(
+              hintText: 'Nilai pengeluaran',
+              hintStyle: defaultTextTheme,
+              border: OutlineInputBorder(
+                  borderRadius:
+                  BorderRadius.all(Radius.circular(15))
+              )
+          ),
+        )
+    );
+  }
+
+  String _selectedKet = 'Makanan';
+  void dropdownCallback(String? selectedValue){
+    if (selectedValue is String){
+      setState(() {
+        _selectedKet = selectedValue;
+      });
+    }
+  }
+  Widget keteranganCatalog(){
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 25),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(
+              color: gray,
+              width: 1
+          )
+      ),
+      child: DropdownButton(
+          isExpanded: true,
+          value: _selectedKet,
+          items: const [
+            DropdownMenuItem(child: Text('   Makanan'), value: 'Makanan',),
+            DropdownMenuItem(child: Text('   Transport'), value: 'Transport',),
+            DropdownMenuItem(child: Text('   Housekeeping'), value: 'Housekeeping',),
+            DropdownMenuItem(child: Text('   Internet'), value: 'Internet',),
+            DropdownMenuItem(child: Text('   Bulanan'), value: 'Bulanan',),
+            DropdownMenuItem(child: Text('   Lain-lain'), value: 'Lain-lain',),
+            DropdownMenuItem(child: Text('   Pendapatan'), value: 'Pendapatan',),
+          ],
+          onChanged: dropdownCallback),
+    );
+  }
+
   Widget submitLogButton(){
+    return BlocConsumer<AuthCubit, AuthState>(
+        builder: (context, state){
+          if (state is AuthSuccess){
+            return submitLogButtonPrep(state.user.uid);
+          }
+          else{
+            return nullWidget;
+          }
+        },
+        listener: (context, state){}
+    );
+  }
+
+  Widget submitLogButtonPrep(String uid){
     return BlocConsumer<LogCubit, LogState>(
         builder: (context, state){
           if (state is LogLoading){
@@ -61,7 +128,12 @@ class _AddLogState extends State<AddLogPage>{
               textSize: 12,
               textColor: black,
               onPressed: (){
-                // TODO: Implement add log function
+                context.read<LogCubit>().addLog(
+                  uid: uid,
+                  nilaiRaw: valController.text,
+                  waktu: DateTime.now(),
+                  keterangan: _selectedKet,
+                );
               },
             );
           }
@@ -79,7 +151,19 @@ class _AddLogState extends State<AddLogPage>{
             );
           }
         },
-        listener: (context, state){}
+        listener: (context, state){
+          if (state is LogSuccess){
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text("Log added successfully"),
+              backgroundColor: green,
+            ));
+          } else if (state is LogFailed){
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(state.error),
+              backgroundColor: red,
+            ));
+          }
+        }
     );
   }
 
@@ -91,6 +175,10 @@ class _AddLogState extends State<AddLogPage>{
             children: [
               SizedBox(height: 60,),
               openingPlate(),
+              SizedBox(height: 30,),
+              inputVal(),
+              SizedBox(height: 30,),
+              keteranganCatalog(),
               SizedBox(height: 30,),
               submitLogButton(),
             ],
