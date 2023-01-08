@@ -5,29 +5,13 @@ import 'package:liburan/ui/home_page.dart';
 import 'package:liburan/ui/data_page.dart';
 import 'package:liburan/ui/logs_page.dart';
 import 'package:liburan/ui/settings_page.dart';
+import 'package:liburan/widgets/customfloatingbutton.dart';
 
 class NavPage extends StatefulWidget{
   const NavPage({Key? key}) : super(key: key);
 
   @override
   State<NavPage> createState() => _NavState();
-}
-
-void doNothing(){
-  print("You pressed a button!");
-}
-
-Widget createLogButton(){
-  return Padding(
-      padding: const EdgeInsets.only(bottom: 30, right: 10),
-      child: FloatingActionButton(
-        backgroundColor: blue,
-        child: Icon(Icons.add),
-        onPressed: (){
-          doNothing();
-        },
-      )
-  );
 }
 
 class _NavState extends State<NavPage>{
@@ -69,7 +53,7 @@ class _NavState extends State<NavPage>{
   ];
 
   final floatingTab = [
-    createLogButton(),
+    customfloatingButton(),
     nullWidget,
     nullWidget,
     nullWidget,

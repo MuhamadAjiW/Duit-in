@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:liburan/cubit/log_cubit.dart';
 
 //import cubit
 import 'package:liburan/cubit/testcubit.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => TestCubit()),
         BlocProvider(create: (context) => AuthCubit()),
+        BlocProvider(create: (context) => LogCubit()),
       ],
       child: MaterialApp(
         home: SplashPage(),
