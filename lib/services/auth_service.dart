@@ -1,6 +1,4 @@
 
-
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:liburan/models/user_model.dart';
 import 'package:liburan/services/user_service.dart';
@@ -43,6 +41,17 @@ class AuthService {
     try{
       await _auth.signOut();
     } catch (e) {
+      throw e;
+    }
+  }
+
+  Future<void> updatePass(String newPass) async{
+    try{
+      final user = await _auth.currentUser;
+      if (user != null){
+        user.updatePassword(newPass).then((_) {});
+      }
+    } catch (e){
       throw e;
     }
   }

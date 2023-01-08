@@ -76,7 +76,7 @@ class _SettingsPageState extends State<SettingsPage>{
                       ),
                       SettingsButton(
                         buttonText: "Contents",
-                        buttonDesc: "Control your contents",
+                        buttonDesc: "Control viewed contents",
                         onPressed: () {
                           Navigator.push(
                               context,
@@ -87,7 +87,7 @@ class _SettingsPageState extends State<SettingsPage>{
                       ),
                       SettingsButton(
                         buttonText: "Security",
-                        buttonDesc: "Change email and password",
+                        buttonDesc: "Change your password",
                         onPressed: () {
                           Navigator.push(
                               context,

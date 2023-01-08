@@ -1,9 +1,5 @@
-import 'dart:ffi';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'package:liburan/models/user_model.dart';
-
 
 class UserService{
   CollectionReference _userReference =
@@ -48,5 +44,4 @@ class UserService{
       throw e;
     }
   }
-
 }

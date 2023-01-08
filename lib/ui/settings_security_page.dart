@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:liburan/theme/theme.dart';
+import 'package:liburan/ui/settings_change_pass.dart';
+import 'package:liburan/widgets/customsettingsbutton.dart';
 
 class SecurityPage extends StatefulWidget{
   const SecurityPage({Key? key}) : super(key: key);
@@ -37,16 +39,55 @@ class _SecurityPageState extends State<SecurityPage>{
     );
   }
 
+
+  Widget settingsList() {
+    return Container(
+        width: double.infinity,
+        alignment: Alignment.topLeft,
+        margin: EdgeInsets.only(top: 20),
+        child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(children: [
+              Container(
+                  margin: EdgeInsets.only(bottom: 20),
+                  child: Column(
+                    children: [
+                      SettingsButton(
+                        buttonText: "Change Password",
+                        buttonDesc: "Change your password",
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PassChangePage()));
+                        },
+                        imagefile: logoItb,
+                      ),
+                    ],
+                  )),
+            ])));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-          child: Column(
-            children: [
-              SizedBox(height: 60,),
-              openingPlate(),
-            ],
-          ),
+        body: ListView(
+          children: [
+            SizedBox(height: 60),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 5),
+              child: openingPlate(),
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 25),
+              width: double.infinity,
+              child: Column(
+                children: [
+                  settingsList(),
+                ],
+              ),
+            )
+          ],
         )
     );
   }
