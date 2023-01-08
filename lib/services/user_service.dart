@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:liburan/models/user_model.dart';
@@ -27,6 +29,22 @@ class UserService{
           name: snapshot['name']
       );
     } catch(e){
+      throw e;
+    }
+  }
+
+
+  Future<UserModel> updateName(UserModel oldUser, String newName) async{
+    try{
+      _userReference.doc(oldUser.uid).update({
+        'name': newName,
+      });
+      DocumentSnapshot snapshot = await _userReference.doc(oldUser.uid).get();
+      return UserModel(
+          uid: oldUser.uid,
+          email: snapshot['email'],
+          name: snapshot['name']);
+    } catch (e){
       throw e;
     }
   }

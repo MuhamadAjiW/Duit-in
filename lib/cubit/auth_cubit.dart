@@ -58,4 +58,15 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
+  void updateName({
+    required UserModel oldUser,
+    required String newName}) async{
+    try{
+      emit(AuthLoading());
+      UserModel user = await UserService().updateName(oldUser, newName);
+      emit(AuthSuccess(user));
+    } catch(e) {
+      emit(AuthFailed(e.toString()));
+    }
+  }
 }

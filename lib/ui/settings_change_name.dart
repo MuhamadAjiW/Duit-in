@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:liburan/cubit/auth_cubit.dart';
@@ -70,17 +71,24 @@ class _NameChangePageState extends State<NameChangePage>{
               child: CircularProgressIndicator(),
             );
           }
-          return CustomTextButton(
-            widthVal: 300,
-            heightVal: 50,
-            buttonColor: Colors.transparent,
-            text: 'Save',
-            textSize: 12,
-            textColor: black,
-            onPressed: (){
-              //TODO: Implement change name
-            },
-          );
+          else if (state is AuthSuccess){
+            return CustomTextButton(
+              widthVal: 300,
+              heightVal: 50,
+              buttonColor: Colors.transparent,
+              text: 'Save',
+              textSize: 12,
+              textColor: black,
+              onPressed: (){
+                context.read<AuthCubit>().updateName(
+                    oldUser: state.user,
+                    newName: nameController.text);
+              },
+            );
+          }
+          else{
+            return nullWidget;
+          }
         },
         listener: (context, state){
           if (state is AuthSuccess){
