@@ -11,7 +11,7 @@ class LogService {
     required String nilaiRaw,
     required String keterangan,
     required DateTime waktu,
-    String notes = '',
+    String notes = '-',
   }) async {
     try{
       final nilai = int.parse(nilaiRaw);

@@ -54,10 +54,10 @@ class _LogsPageState extends State<LogsPage>{
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => LogDetailPage(
-                                            keterangan: logs[index].keterangan,
-                                            nilai: logs[index].nilai,
-                                            waktu: logs[index].waktu,
-                                            notes: logs[index].notes)));
+                                            keterangan: logs[logs.length - 1 - index].keterangan,
+                                            nilai: logs[logs.length - 1 - index].nilai,
+                                            waktu: logs[logs.length - 1 - index].waktu,
+                                            notes: logs[logs.length - 1 - index].notes)));
                               },
                               child: Container(
                                 decoration: BoxDecoration(
@@ -72,7 +72,7 @@ class _LogsPageState extends State<LogsPage>{
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       SizedBox(height: 10,),
-                                      Text("  "+logs[index].waktu.toString(),
+                                      Text("  "+logs[logs.length - 1 - index].waktu.toString(),
                                       style: defaultTextTheme.copyWith(
                                         fontSize: 14
                                         ),
@@ -80,14 +80,14 @@ class _LogsPageState extends State<LogsPage>{
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                       SizedBox(height: 4,),
-                                      Text("  "+logs[index].keterangan,
+                                      Text("  "+logs[logs.length - 1 - index].keterangan,
                                         style: defaultTextTheme.copyWith(
                                             fontSize: 12
                                         ),
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                       ),
-                                      Text("  "+logs[index].nilai.toString(),
+                                      Text("  "+logs[logs.length - 1 - index].nilai.toString(),
                                         style: defaultTextTheme.copyWith(
                                             fontSize: 12
                                         ),

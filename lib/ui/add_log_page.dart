@@ -150,13 +150,24 @@ class _AddLogState extends State<AddLogPage>{
               textSize: 12,
               textColor: black,
               onPressed: (){
-                context.read<LogCubit>().addLog(
-                  uid: uid,
-                  nilaiRaw: valController.text,
-                  waktu: DateTime.now(),
-                  keterangan: _selectedKet,
-                  notes: notesController.text,
-                );
+                if (notesController.text.isEmpty){
+                  context.read<LogCubit>().addLog(
+                    uid: uid,
+                    nilaiRaw: valController.text,
+                    waktu: DateTime.now(),
+                    keterangan: _selectedKet,
+                    notes: ' - ',
+                  );
+                }
+                else{
+                  context.read<LogCubit>().addLog(
+                    uid: uid,
+                    nilaiRaw: valController.text,
+                    waktu: DateTime.now(),
+                    keterangan: _selectedKet,
+                    notes: notesController.text,
+                  );
+                }
               },
             );
           }
