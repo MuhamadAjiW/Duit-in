@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:liburan/theme/theme.dart';
+import 'package:duit.in/theme/theme.dart';
 
 class ContentsPage extends StatefulWidget{
   const ContentsPage({Key? key}) : super(key: key);

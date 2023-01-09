@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:liburan/models/user_model.dart';
+import 'package:duit.in/models/user_model.dart';
 
 class UserService{
   CollectionReference _userReference =

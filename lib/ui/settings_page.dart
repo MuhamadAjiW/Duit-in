@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'package:liburan/theme/theme.dart';
-import 'package:liburan/widgets/customsettingsbutton.dart';
+import 'package:duit.in/theme/theme.dart';
+import 'package:duit.in/widgets/customsettingsbutton.dart';
 
 
-import 'package:liburan/ui/settings_profile_page.dart';
-import 'package:liburan/ui/settings_contents_page.dart';
-import 'package:liburan/ui/settings_notifications_page.dart';
-import 'package:liburan/ui/settings_security_page.dart';
+import 'package:duit.in/ui/settings_profile_page.dart';
+import 'package:duit.in/ui/settings_contents_page.dart';
+import 'package:duit.in/ui/settings_notifications_page.dart';
+import 'package:duit.in/ui/settings_security_page.dart';
 
 class SettingsPage extends StatefulWidget{
   const SettingsPage({Key? key}) : super(key: key);

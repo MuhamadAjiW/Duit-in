@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:liburan/theme/theme.dart';
-import 'package:liburan/ui/settings_change_pass.dart';
-import 'package:liburan/widgets/customsettingsbutton.dart';
+import 'package:duit.in/theme/theme.dart';
+import 'package:duit.in/ui/settings_change_pass.dart';
+import 'package:duit.in/widgets/customsettingsbutton.dart';
 
 class SecurityPage extends StatefulWidget{
   const SecurityPage({Key? key}) : super(key: key);

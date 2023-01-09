@@ -2,17 +2,17 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:liburan/cubit/log_cubit.dart';
-import 'package:liburan/cubit/log_reader_cubit.dart';
+import 'package:duit.in/cubit/log_cubit.dart';
+import 'package:duit.in/cubit/log_reader_cubit.dart';
 
 //import cubit
-import 'package:liburan/cubit/testcubit.dart';
-import 'package:liburan/cubit/auth_cubit.dart';
+import 'package:duit.in/cubit/testcubit.dart';
+import 'package:duit.in/cubit/auth_cubit.dart';
 
 //import ui
-import 'package:liburan/ui/splash_page.dart';
-import 'package:liburan/ui/navigation_page.dart';
-import 'package:liburan/ui/landing_page.dart';
+import 'package:duit.in/ui/splash_page.dart';
+import 'package:duit.in/ui/navigation_page.dart';
+import 'package:duit.in/ui/landing_page.dart';
 
 
 void main() async{

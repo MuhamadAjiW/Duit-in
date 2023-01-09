@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:liburan/cubit/auth_cubit.dart';
-import 'package:liburan/theme/theme.dart';
-import 'package:liburan/ui/settings_change_name.dart';
+import 'package:duit.in/cubit/auth_cubit.dart';
+import 'package:duit.in/theme/theme.dart';
+import 'package:duit.in/ui/settings_change_name.dart';
 
 
 class ProfilePage extends StatefulWidget{

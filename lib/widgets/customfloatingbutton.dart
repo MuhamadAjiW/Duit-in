@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:liburan/theme/theme.dart';
-import 'package:liburan/ui/add_log_page.dart';
+import 'package:duit.in/theme/theme.dart';
+import 'package:duit.in/ui/add_log_page.dart';
 
 class customfloatingButton extends StatefulWidget{
   const customfloatingButton({Key? key}) : super(key: key);

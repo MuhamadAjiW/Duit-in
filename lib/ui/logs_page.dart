@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:liburan/cubit/log_reader_cubit.dart';
+import 'package:duit.in/cubit/log_reader_cubit.dart';
 
-import 'package:liburan/theme/theme.dart';
-import 'package:liburan/ui/log_detail_page.dart';
+import 'package:duit.in/theme/theme.dart';
+import 'package:duit.in/ui/log_detail_page.dart';
 
 class LogsPage extends StatefulWidget{
   const LogsPage({Key? key}) : super(key: key);

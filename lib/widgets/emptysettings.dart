@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:liburan/theme/theme.dart';
+import 'package:duit.in/theme/theme.dart';
 
 class EmptySettingsPage extends StatefulWidget{
   const EmptySettingsPage({Key? key}) : super(key: key);

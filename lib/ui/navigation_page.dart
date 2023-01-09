@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:liburan/cubit/auth_cubit.dart';
-import 'package:liburan/cubit/log_reader_cubit.dart';
-import 'package:liburan/theme/theme.dart';
+import 'package:duit.in/cubit/auth_cubit.dart';
+import 'package:duit.in/cubit/log_reader_cubit.dart';
+import 'package:duit.in/theme/theme.dart';
 
-import 'package:liburan/ui/home_page.dart';
-import 'package:liburan/ui/data_page.dart';
-import 'package:liburan/ui/logs_page.dart';
-import 'package:liburan/ui/settings_page.dart';
-import 'package:liburan/widgets/customfloatingbutton.dart';
+import 'package:duit.in/ui/home_page.dart';
+import 'package:duit.in/ui/data_page.dart';
+import 'package:duit.in/ui/logs_page.dart';
+import 'package:duit.in/ui/settings_page.dart';
+import 'package:duit.in/widgets/customfloatingbutton.dart';
 
 class NavPage extends StatefulWidget{
   const NavPage({Key? key}) : super(key: key);

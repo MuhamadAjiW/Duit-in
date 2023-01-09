@@ -1,6 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:liburan/models/log_model.dart';
+import 'package:duit.in/models/log_model.dart';
 
 class LogService {
   CollectionReference _logsReference =

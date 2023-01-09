@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:liburan/cubit/auth_cubit.dart';
+import 'package:duit.in/cubit/auth_cubit.dart';
 
-import 'package:liburan/theme/theme.dart';
-import 'package:liburan/ui/landing_page.dart';
-import 'package:liburan/widgets/custominput.dart';
-import 'package:liburan/widgets/customtextbutton.dart';
+import 'package:duit.in/theme/theme.dart';
+import 'package:duit.in/ui/landing_page.dart';
+import 'package:duit.in/widgets/custominput.dart';
+import 'package:duit.in/widgets/customtextbutton.dart';
 
 class RegisterPage extends StatefulWidget{
   const RegisterPage({Key? key}) : super(key: key);

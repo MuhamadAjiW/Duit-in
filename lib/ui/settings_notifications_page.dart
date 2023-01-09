@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:liburan/theme/theme.dart';
+import 'package:duit.in/theme/theme.dart';
 
 class NotificationsPage extends StatefulWidget{
   const NotificationsPage({Key? key}) : super(key: key);

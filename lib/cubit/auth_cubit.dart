@@ -2,9 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'package:liburan/services/auth_service.dart';
-import 'package:liburan/services/user_service.dart';
-import 'package:liburan/models/user_model.dart';
+import 'package:duit.in/services/auth_service.dart';
+import 'package:duit.in/services/user_service.dart';
+import 'package:duit.in/models/user_model.dart';
 
 part 'auth_state.dart';
 

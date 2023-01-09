@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:liburan/models/log_model.dart';
-import 'package:liburan/services/logs_service.dart';
+import 'package:duit.in/models/log_model.dart';
+import 'package:duit.in/services/logs_service.dart';
 
 part 'log_reader_state.dart';
 

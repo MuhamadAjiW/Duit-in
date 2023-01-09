@@ -1,7 +1,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:liburan/models/user_model.dart';
-import 'package:liburan/services/user_service.dart';
+import 'package:duit.in/models/user_model.dart';
+import 'package:duit.in/services/user_service.dart';
 
 class AuthService {
   FirebaseAuth _auth = FirebaseAuth.instance;
