@@ -40,6 +40,7 @@ class _LogsPageState extends State<LogsPage>{
 
             if (logs.isNotEmpty){
               return Container(
+                height: MediaQuery.of(context).size.height - 210,
                 child: ListView.builder(
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
@@ -137,6 +138,7 @@ class _LogsPageState extends State<LogsPage>{
         children: [
           SizedBox(height: 60,),
           openingPlate(),
+          SizedBox(height: 30,),
           listOfLogs(),
         ],
       ),
