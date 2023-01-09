@@ -14,11 +14,12 @@ class LogCubit extends Cubit<LogState> {
     required String nilaiRaw,
     required String keterangan,
     required DateTime waktu,
+    String notes = '',
   }) async {
     try{
       emit(LogLoading());
       LogModel log =
-        await LogService().addLog(uid: uid, nilaiRaw: nilaiRaw, keterangan: keterangan, waktu: waktu);
+        await LogService().addLog(uid: uid, nilaiRaw: nilaiRaw, keterangan: keterangan, waktu: waktu, notes: notes);
       emit(LogSuccess(log));
       emit(LogInitial());
     } catch(e){

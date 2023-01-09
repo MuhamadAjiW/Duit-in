@@ -15,6 +15,7 @@ class AddLogPage extends StatefulWidget{
 
 class _AddLogState extends State<AddLogPage>{
   final TextEditingController valController = TextEditingController(text: '');
+  final TextEditingController notesController = TextEditingController(text: '');
 
   Widget openingPlate(){
     return Container(
@@ -97,6 +98,27 @@ class _AddLogState extends State<AddLogPage>{
     );
   }
 
+  Widget addNotes() {
+    return Container(
+        margin: EdgeInsets.symmetric(horizontal: 25),
+        child: TextFormField(
+          controller: notesController,
+          obscureText: false,
+          cursorColor: black,
+          keyboardType: TextInputType.multiline,
+          maxLines: null,
+          decoration: InputDecoration(
+              hintText: 'Notes (optional)',
+              hintStyle: defaultTextTheme,
+              border: OutlineInputBorder(
+                  borderRadius:
+                  BorderRadius.all(Radius.circular(15))
+              )
+          ),
+        )
+    );
+  }
+
   Widget submitLogButton(){
     return BlocConsumer<AuthCubit, AuthState>(
         builder: (context, state){
@@ -133,6 +155,7 @@ class _AddLogState extends State<AddLogPage>{
                   nilaiRaw: valController.text,
                   waktu: DateTime.now(),
                   keterangan: _selectedKet,
+                  notes: notesController.text,
                 );
               },
             );
@@ -179,6 +202,8 @@ class _AddLogState extends State<AddLogPage>{
               inputVal(),
               SizedBox(height: 30,),
               keteranganCatalog(),
+              SizedBox(height: 30,),
+              addNotes(),
               SizedBox(height: 30,),
               submitLogButton(),
             ],

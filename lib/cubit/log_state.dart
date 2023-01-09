@@ -30,3 +30,4 @@ class LogFailed extends LogState {
     return [error];
   }
 }
+

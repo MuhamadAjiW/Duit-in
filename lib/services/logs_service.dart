@@ -11,6 +11,7 @@ class LogService {
     required String nilaiRaw,
     required String keterangan,
     required DateTime waktu,
+    String notes = '',
   }) async {
     try{
       final nilai = int.parse(nilaiRaw);
@@ -18,12 +19,15 @@ class LogService {
           uid: uid,
           nilai: nilai,
           keterangan: keterangan,
-          waktu: DateTime.now());
+          waktu: DateTime.now(),
+          notes: notes,
+      );
       await _logsReference.doc(waktu.toString()).set({
         'uid': uid,
         'nilai': nilai,
         'keterangan' : keterangan,
         'waktu' : waktu,
+        'notes' : notes,
       });
       return log;
     } catch (e){
@@ -31,15 +35,15 @@ class LogService {
     }
   }
 
-  Future<void> readLogs({
+  Future<List<LogModel>> readLogs({
     required String uid,
   }) async {
     try {
-      await _logsReference.get().then(
-              (snapshot) => snapshot.docs.forEach((element) {
-                print(element.reference); //TODO: implement logreader
-              })
-      );
+      QuerySnapshot result = await _logsReference.where("uid", isEqualTo: uid).get();
+      List<LogModel> logs = result.docs.map((e) {
+        return LogModel.fromJson(e.data() as Map<String, dynamic>);
+      }).toList();
+      return logs;
     } catch(e){
       throw e;
     }
