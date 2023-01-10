@@ -61,7 +61,10 @@ int getsum(List<LogModel> loglist){
 int getsumOfDay(List<LogModel> loglist){
   int sum = 0;
   for(int i = 0; i < loglist.length; i++){
-    if (loglist[i].waktu.day == DateTime.now().day){
+    if (loglist[i].waktu.day == DateTime.now().day
+    && loglist[i].waktu.month == DateTime.now().month
+    && loglist[i].waktu.year == DateTime.now().year
+    ){
       sum += loglist[i].nilai;
     }
   }return sum;
