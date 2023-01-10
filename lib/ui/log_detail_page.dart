@@ -231,20 +231,28 @@ class _LogDetailPageState extends State<LogDetailPage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 60,),
-              openingPlate(),
-              SizedBox(height: 20,),
-              logDetails(),
-              SizedBox(height: 40,),
-              editButton(),
-              SizedBox(height: 10,),
-              deleteButton(),
-            ],
-          ),
+        body: ListView(
+          children: [
+            SizedBox(height: 50),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 5),
+              child: openingPlate(),
+            ),
+            Container(
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 20,),
+                  logDetails(),
+                  SizedBox(height: 40,),
+                  editButton(),
+                  SizedBox(height: 10,),
+                  deleteButton(),
+                ],
+              ),
+            )
+          ],
         )
     );
   }

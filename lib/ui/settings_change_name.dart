@@ -106,17 +106,25 @@ class _NameChangePageState extends State<NameChangePage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-          child: Column(
-            children: [
-              SizedBox(height: 60,),
-              openingPlate(),
-              SizedBox(height: 30,),
-              inputNewName(),
-              SizedBox(height: 30,),
-              submitButton(),
-            ],
-          ),
+        body: ListView(
+          children: [
+            SizedBox(height: 50),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 5),
+              child: openingPlate(),
+            ),
+            Container(
+              width: double.infinity,
+              child: Column(
+                children: [
+                  SizedBox(height: 30,),
+                  inputNewName(),
+                  SizedBox(height: 30,),
+                  submitButton(),
+                ],
+              ),
+            )
+          ],
         )
     );
   }

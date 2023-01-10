@@ -73,7 +73,7 @@ class _SecurityPageState extends State<SecurityPage>{
     return Scaffold(
         body: ListView(
           children: [
-            SizedBox(height: 60),
+            SizedBox(height: 50),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 5),
               child: openingPlate(),

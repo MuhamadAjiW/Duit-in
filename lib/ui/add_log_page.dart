@@ -206,21 +206,29 @@ class _AddLogState extends State<AddLogPage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-          child: Column(
-            children: [
-              SizedBox(height: 60,),
-              openingPlate(),
-              SizedBox(height: 30,),
-              inputVal(),
-              SizedBox(height: 30,),
-              keteranganCatalog(),
-              SizedBox(height: 30,),
-              addNotes(),
-              SizedBox(height: 30,),
-              submitLogButton(),
-            ],
-          ),
+        body: ListView(
+          children: [
+            SizedBox(height: 50),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 5),
+              child: openingPlate(),
+            ),
+            Container(
+              width: double.infinity,
+              child: Column(
+                children: [
+                  SizedBox(height: 30,),
+                  inputVal(),
+                  SizedBox(height: 30,),
+                  keteranganCatalog(),
+                  SizedBox(height: 30,),
+                  addNotes(),
+                  SizedBox(height: 30,),
+                  submitLogButton(),
+                ],
+              ),
+            )
+          ],
         )
     );
   }

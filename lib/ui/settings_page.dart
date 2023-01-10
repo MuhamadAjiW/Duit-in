@@ -20,7 +20,6 @@ class _SettingsPageState extends State<SettingsPage>{
 
   Widget openingPlate(){
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -157,9 +156,9 @@ class _SettingsPageState extends State<SettingsPage>{
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        SizedBox(height: 56,),
+        SizedBox(height: 57,),
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 5),
+          margin: EdgeInsets.symmetric(horizontal: 25),
           child: openingPlate(),
         ),
         Container(
