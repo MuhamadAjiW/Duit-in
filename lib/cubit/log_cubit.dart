@@ -56,4 +56,16 @@ class LogCubit extends Cubit<LogState> {
       emit(LogInitial());
     }
   }
+
+  void deleteLog({
+    required DateTime oldWaktu,
+  }) async{
+    try{
+      emit(LogLoading());
+      await LogService().deleteLog(oldWaktu: oldWaktu);
+      emit(LogInitial());
+    } catch(e){
+      throw e;
+    }
+  }
 }

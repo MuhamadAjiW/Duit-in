@@ -55,6 +55,7 @@ class _LogsPageState extends State<LogsPage>{
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => LogDetailPage(
+                                            uid: logs[logs.length - 1 - index].uid,
                                             keterangan: logs[logs.length - 1 - index].keterangan,
                                             nilai: logs[logs.length - 1 - index].nilai,
                                             waktu: logs[logs.length - 1 - index].waktu,

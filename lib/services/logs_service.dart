@@ -64,6 +64,16 @@ class LogService {
     }
   }
 
+  Future<void> deleteLog({
+    required DateTime oldWaktu,
+  }) async {
+    try{
+      await _logsReference.doc(oldWaktu.toString()).delete();
+    } catch(e){
+      throw e;
+    }
+  }
+
   Future<List<LogModel>> readLogs({
     required String uid,
   }) async {

@@ -1,16 +1,19 @@
 import 'package:duit.in/cubit/log_cubit.dart';
+import 'package:duit.in/cubit/log_reader_cubit.dart';
 import 'package:duit.in/ui/log_edit_page.dart';
 import 'package:flutter/material.dart';
 import 'package:duit.in/theme/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LogDetailPage extends StatefulWidget{
+  String uid;
   String keterangan;
   int nilai;
   DateTime waktu;
   String notes;
   LogDetailPage(
       {Key? key,
+        required this.uid,
         required this.keterangan,
         required this.nilai,
         required this.waktu,
@@ -182,7 +185,9 @@ class _LogDetailPageState extends State<LogDetailPage>{
         ),
         child: TextButton(
           onPressed: (){
-            //TODO: implement delete log function
+            context.read<LogCubit>().deleteLog(oldWaktu: this.widget.waktu);
+            context.read<LogReaderCubit>().readLogs(this.widget.uid);
+            Navigator.pop(context);
           },
           child: Text(
             'Delete Log',
