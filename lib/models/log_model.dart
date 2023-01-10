@@ -33,7 +33,7 @@ class LogModel extends Equatable{
 
 //Fungsi lain yang berkaitan
 String currencyForm(String val){
-  if (val.length > 4){
+  if (val.length > 3){
     int remainder = val.length % 3;
     String initial = val.substring(0, remainder);
     String marked = val.substring(remainder);
