@@ -22,11 +22,40 @@ class LogService {
           waktu: DateTime.now(),
           notes: notes,
       );
-      await _logsReference.doc(waktu.toString()).set({
+      String stamp = waktu.toString().substring(0,23);
+      await _logsReference.doc(stamp).set({
         'uid': uid,
         'nilai': nilai,
         'keterangan' : keterangan,
         'waktu' : waktu,
+        'notes' : notes,
+      });
+      return log;
+    } catch (e){
+      throw e;
+    }
+  }
+
+  Future<LogModel> editLog({
+    required String oldUid,
+    required String nilaiRaw,
+    required String keterangan,
+    required DateTime oldWaktu,
+    String notes = '-',
+  }) async {
+    print(oldWaktu.toString());
+    try{
+      final nilai = int.parse(nilaiRaw);
+      LogModel log = LogModel(
+        uid: oldUid,
+        nilai: nilai,
+        keterangan: keterangan,
+        waktu: oldWaktu,
+        notes: notes,
+      );
+      await _logsReference.doc(oldWaktu.toString()).update({
+        'nilai': nilai,
+        'keterangan' : keterangan,
         'notes' : notes,
       });
       return log;

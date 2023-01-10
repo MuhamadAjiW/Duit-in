@@ -1,12 +1,15 @@
+import 'package:duit.in/cubit/log_cubit.dart';
+import 'package:duit.in/ui/log_edit_page.dart';
 import 'package:flutter/material.dart';
 import 'package:duit.in/theme/theme.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LogDetailPage extends StatefulWidget{
-  final String keterangan;
-  final int nilai;
-  final DateTime waktu;
-  final String notes;
-  const LogDetailPage(
+  String keterangan;
+  int nilai;
+  DateTime waktu;
+  String notes;
+  LogDetailPage(
       {Key? key,
         required this.keterangan,
         required this.nilai,
@@ -51,75 +54,145 @@ class _LogDetailPageState extends State<LogDetailPage>{
   }
 
   Widget logDetails(){
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 25),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: 10,),
-          Text("Waktu:",
-            style: defaultTextTheme.copyWith(
-              fontSize: 24,
-              fontWeight: medium,
-            ),
+    return BlocConsumer<LogCubit, LogState>(
+        builder: (context, state){
+          return Container(
+              margin: EdgeInsets.symmetric(horizontal: 25),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 10,),
+                  Text("Waktu:",
+                    style: defaultTextTheme.copyWith(
+                      fontSize: 24,
+                      fontWeight: medium,
+                    ),
+                  ),
+                  SizedBox(height: 10,),
+                  Text(this.widget.waktu.toString(),
+                    style: defaultTextTheme.copyWith(
+                        fontSize: 16
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  SizedBox(height: 10,),
+                  Text("Keterangan:",
+                    style: defaultTextTheme.copyWith(
+                      fontSize: 24,
+                      fontWeight: medium,
+                    ),
+                  ),
+                  SizedBox(height: 10,),
+                  Text(this.widget.keterangan,
+                    style: defaultTextTheme.copyWith(
+                        fontSize: 16
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  SizedBox(height: 10,),
+                  Text("Nilai:",
+                    style: defaultTextTheme.copyWith(
+                      fontSize: 24,
+                      fontWeight: medium,
+                    ),
+                  ),
+                  SizedBox(height: 10,),
+                  Text(this.widget.nilai.toString(),
+                    style: defaultTextTheme.copyWith(
+                        fontSize: 16
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  SizedBox(height: 10,),
+                  Text("Notes:",
+                    style: defaultTextTheme.copyWith(
+                      fontSize: 24,
+                      fontWeight: medium,
+                    ),
+                  ),
+                  SizedBox(height: 10,),
+                  Text(this.widget.notes,
+                    style: defaultTextTheme.copyWith(
+                        fontSize: 16
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              )
+          );
+        },
+        listener: (context, state){
+          if (state is LogSuccess){
+            setState(() {
+              this.widget.nilai = state.log.nilai;
+              this.widget.keterangan = state.log.keterangan;
+              this.widget.notes = state.log.notes;
+            });
+          }
+        });
+  }
+
+  Widget editButton(){
+    return Center(
+      child: Container(
+        width: 300,
+        decoration: BoxDecoration(
+          color: white,
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(
+            color: gray,
+            width: 1,
           ),
-          SizedBox(height: 10,),
-          Text(this.widget.waktu.toString(),
-            style: defaultTextTheme.copyWith(
-                fontSize: 16
-            ),
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
+        ),
+        child: TextButton(
+          onPressed: (){
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => EditLogPage(
+                        keterangan: this.widget.keterangan,
+                        nilai: this.widget.nilai,
+                        waktu: this.widget.waktu,
+                        notes: this.widget.notes)));
+          },
+          child: Text(
+            'Edit Log',
+            style: defaultTextTheme,
           ),
-          SizedBox(height: 10,),
-          Text("Keterangan:",
-            style: defaultTextTheme.copyWith(
-              fontSize: 24,
-              fontWeight: medium,
-            ),
-          ),
-          SizedBox(height: 10,),
-          Text(this.widget.keterangan,
-            style: defaultTextTheme.copyWith(
-                fontSize: 16
-            ),
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-          SizedBox(height: 10,),
-          Text("Nilai:",
-            style: defaultTextTheme.copyWith(
-              fontSize: 24,
-              fontWeight: medium,
-            ),
-          ),
-          SizedBox(height: 10,),
-          Text(this.widget.nilai.toString(),
-            style: defaultTextTheme.copyWith(
-                fontSize: 16
-            ),
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-          SizedBox(height: 10,),
-          Text("Notes:",
-            style: defaultTextTheme.copyWith(
-              fontSize: 24,
-              fontWeight: medium,
-            ),
-          ),
-          SizedBox(height: 10,),
-          Text(this.widget.notes,
-            style: defaultTextTheme.copyWith(
-                fontSize: 16
-            ),
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ],
-      )
+        ),
+      ),
     );
   }
+
+  Widget deleteButton(){
+    return Center(
+      child: Container(
+        width: 300,
+        decoration: BoxDecoration(
+          color: red,
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(
+            color: gray,
+            width: 1,
+          ),
+        ),
+        child: TextButton(
+          onPressed: (){
+            //TODO: implement delete log function
+          },
+          child: Text(
+            'Delete Log',
+            style: defaultTextTheme,
+          ),
+        ),
+      ),
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -132,6 +205,10 @@ class _LogDetailPageState extends State<LogDetailPage>{
               openingPlate(),
               SizedBox(height: 20,),
               logDetails(),
+              SizedBox(height: 40,),
+              editButton(),
+              SizedBox(height: 10,),
+              deleteButton(),
             ],
           ),
         )

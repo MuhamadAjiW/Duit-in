@@ -19,7 +19,36 @@ class LogCubit extends Cubit<LogState> {
     try{
       emit(LogLoading());
       LogModel log =
-        await LogService().addLog(uid: uid, nilaiRaw: nilaiRaw, keterangan: keterangan, waktu: waktu, notes: notes);
+        await LogService().addLog(
+            uid: uid,
+            nilaiRaw: nilaiRaw,
+            keterangan: keterangan,
+            waktu: waktu,
+            notes: notes);
+      emit(LogSuccess(log));
+      emit(LogInitial());
+    } catch(e){
+      emit(LogFailed(e.toString()));
+      emit(LogInitial());
+    }
+  }
+
+  void editLog({
+    required String oldUid,
+    required String nilaiRaw,
+    required String keterangan,
+    required DateTime oldWaktu,
+    String notes = '-',
+  }) async {
+    try{
+      emit(LogLoading());
+      LogModel log =
+      await LogService().editLog(
+          oldUid: oldUid,
+          nilaiRaw: nilaiRaw,
+          keterangan: keterangan,
+          oldWaktu: oldWaktu,
+          notes: notes);
       emit(LogSuccess(log));
       emit(LogInitial());
     } catch(e){
