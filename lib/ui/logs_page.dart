@@ -1,3 +1,4 @@
+import 'package:duit.in/models/log_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:duit.in/cubit/log_reader_cubit.dart';
@@ -89,7 +90,7 @@ class _LogsPageState extends State<LogsPage>{
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                       ),
-                                      Text("  "+logs[logs.length - 1 - index].nilai.toString(),
+                                      Text("  "+currencyForm(logs[logs.length - 1 - index].nilai.toString()),
                                         style: defaultTextTheme.copyWith(
                                             fontSize: 12
                                         ),
@@ -140,7 +141,7 @@ class _LogsPageState extends State<LogsPage>{
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 80,),
+          SizedBox(height: 85,),
           openingPlate(),
           SizedBox(height: 10,),
           listOfLogs(),

@@ -1,3 +1,5 @@
+import 'package:duit.in/cubit/log_reader_cubit.dart';
+import 'package:duit.in/models/log_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:duit.in/cubit/auth_cubit.dart';
@@ -37,20 +39,55 @@ class _HomePageState extends State<HomePage>{
     });
   }
 
+  Widget spendingPlate(){
+    return BlocBuilder<LogReaderCubit, LogReaderState>(builder: (context, state){
+      if (state is LogReaderSuccess){
+        int sum = getsum(state.logs);
+        return Container(
+          margin: EdgeInsets.symmetric(horizontal: 5),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Today you have spent: ', style: defaultTextTheme.copyWith(
+                fontSize: 16,
+                fontWeight: light,
+              )),
+              SizedBox(height: 10,),
+              Text(currencyForm(sum.toString()), style: defaultTextTheme.copyWith(
+                fontSize: 16,
+                fontWeight: medium,
+              )),
+            ],
+          ),
+        );
+      }
+
+      else return SizedBox();
+    });
+  }
+
+  @override
   @override
   Widget build(BuildContext context) {
-    return Container(
-        margin: EdgeInsets.symmetric(horizontal: 20),
-        width: double.infinity,
-        height: double.infinity,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Spacer(flex: 1,),
-            openingPlate(),
-            Spacer(flex: 8,),
-          ],
+    return ListView(
+      children: [
+        SizedBox(height: 60,),
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 20),
+          child: openingPlate(),
         ),
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 25),
+          width: double.infinity,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 20,),
+              spendingPlate(),
+            ],
+          ),
+        )
+      ],
     );
   }
 }

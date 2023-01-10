@@ -30,3 +30,30 @@ class LogModel extends Equatable{
     return [uid, nilai, keterangan, waktu, notes];
   }
 }
+
+//Fungsi lain yang berkaitan
+String currencyForm(String val){
+  if (val.length > 4){
+    int remainder = val.length % 3;
+    String initial = val.substring(0, remainder);
+    String marked = val.substring(remainder);
+
+    marked = marked.replaceAllMapped(RegExp(r".{3}"), (match) => "${match.group(0)}.");
+
+    String retval = initial + '.' + marked;
+    retval = retval.substring(0, retval.length -1);
+    retval = 'Rp' + retval + ',00';
+
+    return retval;
+  }
+  else{
+    return val;
+  }
+}
+
+int getsum(List<LogModel> loglist){
+  int sum = 0;
+  for(int i = 0; i < loglist.length; i++){
+    sum += loglist[i].nilai;
+  }return sum;
+}

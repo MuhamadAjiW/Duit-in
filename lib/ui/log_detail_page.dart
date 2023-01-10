@@ -1,5 +1,6 @@
 import 'package:duit.in/cubit/log_cubit.dart';
 import 'package:duit.in/cubit/log_reader_cubit.dart';
+import 'package:duit.in/models/log_model.dart';
 import 'package:duit.in/ui/log_edit_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -26,8 +27,6 @@ class LogDetailPage extends StatefulWidget{
 }
 
 class _LogDetailPageState extends State<LogDetailPage>{
-
-
 
   Widget openingPlate(){
     return Container(
@@ -103,7 +102,7 @@ class _LogDetailPageState extends State<LogDetailPage>{
                     ),
                   ),
                   SizedBox(height: 10,),
-                  Text(this.widget.nilai.toString(),
+                  Text(currencyForm(this.widget.nilai.toString()),
                     style: defaultTextTheme.copyWith(
                         fontSize: 16
                     ),

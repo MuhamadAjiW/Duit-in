@@ -157,7 +157,7 @@ class _SettingsPageState extends State<SettingsPage>{
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        SizedBox(height: 60,),
+        SizedBox(height: 56,),
         Container(
           margin: EdgeInsets.symmetric(horizontal: 5),
           child: openingPlate(),
