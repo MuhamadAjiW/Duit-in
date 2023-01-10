@@ -109,7 +109,10 @@ class _LogsPageState extends State<LogsPage>{
               );
             }
             else{
-              return Text("No logs available");
+              return Container(
+                margin: EdgeInsets.symmetric(horizontal: 5),
+                child: Text("No logs available", style: defaultTextTheme,),
+              );
             }
           }
           else{
@@ -138,7 +141,7 @@ class _LogsPageState extends State<LogsPage>{
         children: [
           SizedBox(height: 60,),
           openingPlate(),
-          SizedBox(height: 30,),
+          SizedBox(height: 10,),
           listOfLogs(),
         ],
       ),

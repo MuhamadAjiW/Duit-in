@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:duit.in/cubit/log_reader_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,6 +45,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin{
       }
 
       else {
+        context.read<LogReaderCubit>().readLogs(user.uid);
         context.read<AuthCubit>().getCurrentUser(user.uid);
         Navigator.pushNamedAndRemoveUntil(
             context, '/nav-page', (route) => false);

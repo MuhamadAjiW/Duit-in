@@ -1,3 +1,4 @@
+import 'package:duit.in/cubit/log_reader_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:duit.in/cubit/auth_cubit.dart';
@@ -47,6 +48,7 @@ class _RegisterPageState extends State<RegisterPage>{
           },
           listener: (context, state){
             if (state is AuthSuccess){
+              context.read<LogReaderCubit>().readLogs(state.user.uid);
               Navigator.pushNamedAndRemoveUntil(
                   context, '/nav-page', (route) => false);
             } else if (state is AuthFailed){

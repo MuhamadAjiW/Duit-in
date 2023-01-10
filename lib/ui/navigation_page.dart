@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:duit.in/cubit/auth_cubit.dart';
-import 'package:duit.in/cubit/log_reader_cubit.dart';
 import 'package:duit.in/theme/theme.dart';
 
 import 'package:duit.in/ui/home_page.dart';
@@ -28,8 +27,8 @@ class _NavState extends State<NavPage>{
     //placeholder
   }
 
-  void onLogPressed<AuthCubit, AuthState>(String uid){
-    context.read<LogReaderCubit>().readLogs(uid);
+  void onLogPressed(String uid){
+
   }
 
   void onSettingsPressed(){
@@ -39,40 +38,6 @@ class _NavState extends State<NavPage>{
   Widget bottomNavBar(){
     return BlocBuilder<AuthCubit, AuthState>(
         builder: (context, state){
-          if(state is AuthSuccess){
-            return BottomNavigationBar(
-              type: BottomNavigationBarType.fixed,
-              currentIndex: currentIndex,
-              items: [
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.home_outlined),
-                    label: 'Home',
-                    activeIcon: Icon(Icons.home_filled)),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.auto_graph_outlined),
-                    label: 'Data',
-                    activeIcon: Icon(Icons.auto_graph)),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.receipt_outlined),
-                    label: 'Logs',
-                    activeIcon: Icon(Icons.receipt_sharp)),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.settings),
-                    label: 'Settings'),
-              ],
-              onTap: (index){
-                setState((){
-                  currentIndex = index;
-                  switch (index){
-                    case 2: {
-                      onLogPressed(state.user.uid);
-                    }
-                  }
-                });
-              },);
-          }
-
-          else{
             return BottomNavigationBar(
               type: BottomNavigationBarType.fixed,
               currentIndex: currentIndex,
@@ -98,7 +63,6 @@ class _NavState extends State<NavPage>{
                   currentIndex = index;
                 });
               },);
-          }
         }
     );
   }

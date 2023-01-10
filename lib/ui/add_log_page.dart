@@ -1,3 +1,4 @@
+import 'package:duit.in/cubit/log_reader_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:duit.in/cubit/auth_cubit.dart';
@@ -168,6 +169,7 @@ class _AddLogState extends State<AddLogPage>{
                     notes: notesController.text,
                   );
                 }
+                context.read<LogReaderCubit>().readLogs(uid);
               },
             );
           }
