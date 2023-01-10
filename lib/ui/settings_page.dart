@@ -1,3 +1,4 @@
+import 'package:duit.in/ui/settings_about_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:duit.in/theme/theme.dart';
@@ -118,6 +119,31 @@ class _SettingsPageState extends State<SettingsPage>{
                               context,
                               MaterialPageRoute(
                                   builder: (context) => NotificationsPage()));
+                        },
+                        imagefile: logoItb,
+                      ),
+                    ],
+                  )),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text("Others",
+                    style: defaultTextTheme.copyWith(
+                      fontSize: 20,
+                      fontWeight: regular,
+                    )),
+              ),
+              Container(
+                  margin: EdgeInsets.only(top: 20, bottom: 20),
+                  child: Column(
+                    children: [
+                      SettingsButton(
+                        buttonText: "About",
+                        buttonDesc: "Application Information",
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AboutSettingsPage()));
                         },
                         imagefile: logoItb,
                       ),

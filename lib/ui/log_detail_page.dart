@@ -1,6 +1,7 @@
 import 'package:duit.in/cubit/log_cubit.dart';
 import 'package:duit.in/cubit/log_reader_cubit.dart';
 import 'package:duit.in/ui/log_edit_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:duit.in/theme/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -171,6 +172,33 @@ class _LogDetailPageState extends State<LogDetailPage>{
     );
   }
 
+  void deletefunction(){
+    context.read<LogCubit>().deleteLog(oldWaktu: this.widget.waktu);
+    context.read<LogReaderCubit>().readLogs(this.widget.uid);
+    Navigator.pop(context);
+    Navigator.pop(context);
+  }
+
+  Widget alert(){
+    return AlertDialog(
+      title: Text("Delete"),
+      content: Text("Are you sure?"),
+      actions: [
+        TextButton(
+            onPressed: (){
+              Navigator.of(context, rootNavigator: true).pop();
+            },
+            child: Text("No")),
+        TextButton(
+            onPressed: (){
+              deletefunction();
+            },
+            child: Text("Yes")),
+      ],
+    );
+  }
+
+
   Widget deleteButton(){
     return Center(
       child: Container(
@@ -185,9 +213,11 @@ class _LogDetailPageState extends State<LogDetailPage>{
         ),
         child: TextButton(
           onPressed: (){
-            context.read<LogCubit>().deleteLog(oldWaktu: this.widget.waktu);
-            context.read<LogReaderCubit>().readLogs(this.widget.uid);
-            Navigator.pop(context);
+            showDialog(
+                context: context,
+                builder: (_) => alert(),
+                barrierDismissible: true
+            );
           },
           child: Text(
             'Delete Log',

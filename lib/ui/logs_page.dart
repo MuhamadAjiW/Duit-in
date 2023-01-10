@@ -140,7 +140,7 @@ class _LogsPageState extends State<LogsPage>{
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 60,),
+          SizedBox(height: 80,),
           openingPlate(),
           SizedBox(height: 10,),
           listOfLogs(),
