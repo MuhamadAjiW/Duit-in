@@ -1,4 +1,5 @@
 import 'package:duit.in/models/log_model.dart';
+import 'package:duit.in/widgets/customlogbutton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:duit.in/cubit/log_reader_cubit.dart';
@@ -50,59 +51,24 @@ class _LogsPageState extends State<LogsPage>{
                       return Container(
                         child: Column(
                           children: [
-                            GestureDetector(
-                              onTap: (){
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => LogDetailPage(
-                                            uid: logs[logs.length - 1 - index].uid,
-                                            keterangan: logs[logs.length - 1 - index].keterangan,
-                                            nilai: logs[logs.length - 1 - index].nilai,
-                                            waktu: logs[logs.length - 1 - index].waktu,
-                                            notes: logs[logs.length - 1 - index].notes)));
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                    border: Border.all(
-                                        color: gray,
-                                        width: 1
-                                    )
-                                ),
-                                width: double.infinity,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(height: 10,),
-                                      Text("  "+logs[logs.length - 1 - index].waktu.toString(),
-                                      style: defaultTextTheme.copyWith(
-                                        fontSize: 14
-                                        ),
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                      SizedBox(height: 4,),
-                                      Text("  "+logs[logs.length - 1 - index].keterangan,
-                                        style: defaultTextTheme.copyWith(
-                                            fontSize: 12
-                                        ),
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                      Text("  "+currencyForm(logs[logs.length - 1 - index].nilai.toString()),
-                                        style: defaultTextTheme.copyWith(
-                                            fontSize: 12
-                                        ),
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                      SizedBox(height: 15,),
-                                    ],
-                                  ),
+                              CustomLogButton(
+                                buttonText: logs[logs.length - 1 - index].keterangan,
+                                isIncome: (logs[logs.length - 1 - index].keterangan == "pendapatan"),
+                                timeMarker: getLogTimeMarker(logs[logs.length - 1 - index].waktu),
+                                value: currencyForm(logs[logs.length - 1 - index].nilai.toString()),
+                                onPressed: (){
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => LogDetailPage(
+                                              uid: logs[logs.length - 1 - index].uid,
+                                              keterangan: logs[logs.length - 1 - index].keterangan,
+                                              nilai: logs[logs.length - 1 - index].nilai,
+                                              waktu: logs[logs.length - 1 - index].waktu,
+                                              notes: logs[logs.length - 1 - index].notes)));
+                                },
                               ),
-                            ),
-                            SizedBox(height: 10,),
+                              SizedBox(height: 10,),
                           ],
                         ),
                       );

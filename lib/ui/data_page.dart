@@ -2,8 +2,6 @@
 import 'package:duit.in/models/log_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:draw_graph/draw_graph.dart';
-import 'package:draw_graph/models/feature.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 import 'package:duit.in/cubit/log_reader_cubit.dart';
@@ -44,38 +42,31 @@ class _DataPageState extends State<DataPage>{
                           .toDouble()));
             }
 
-            print(dataList);
-
-            List<String> dateList = [];
-            for (int daysBefore = 6; daysBefore <= 0; daysBefore--){
-
-            }
-
             SideTitles _bottomTitles = SideTitles(
                 showTitles: true,
                 getTitlesWidget: (value, meta) {
                   String text = '';
 
                   if (value == 0.0){
-                    return Text(getDayName(6));
+                    return Text(getDayName(6, true));
                   }
                   if (value == 1.0){
-                    return Text(getDayName(5));
+                    return Text(getDayName(5, true));
                   }
                   if (value == 2.0){
-                    return Text(getDayName(4));
+                    return Text(getDayName(4, true));
                   }
                   if (value == 3.0){
-                    return Text(getDayName(3));
+                    return Text(getDayName(3, true));
                   }
                   if (value == 4.0){
-                    return Text(getDayName(2));
+                    return Text(getDayName(2, true));
                   }
                   if (value == 5.0){
-                    return Text(getDayName(1));
+                    return Text(getDayName(1, true));
                   }
                   if (value == 6.0){
-                    return Text(getDayName(0));
+                    return Text(getDayName(0, true));
                   }
                   return Text(text);
                 }
@@ -113,52 +104,6 @@ class _DataPageState extends State<DataPage>{
         });
   }
 
-  Widget graphDailyCrude(){
-    return BlocBuilder<LogReaderCubit, LogReaderState>(
-      builder: (context, state){
-      if (state is LogReaderSuccess){
-        List<double> dataList = [];
-        for (int daysBefore = 4; daysBefore >= 0; daysBefore--){
-          dataList.add(getsumOfPastDays(state.logs, daysBefore).toDouble());
-        }
-
-        double max = getMax(dataList);
-        int subtracter = max.toInt() ~/ 4;
-        List<String> paramList = [];
-
-        paramList.add(currencyForm('0'));
-        for (int i = 3; i > 0; i--){
-          paramList.add(currencyForm((max.toInt() - subtracter*i).toString()));
-        }
-        paramList.add(currencyForm(max.toInt().toString()));
-
-        List<String> dateList = [];
-        for (int daysBefore = 6; daysBefore <= 0; daysBefore--){
-        }
-
-        List<Feature> features = [
-          Feature(
-            title: "Pengeluaran",
-            color: Colors.blue,
-            data: dataList,
-          ),
-        ];
-
-        return LineGraph(
-            features: features,
-            size: Size(320, 400),
-            labelX: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5'],
-            labelY: [],
-            showDescription: true,
-            graphColor: gray,
-            graphOpacity: 0.2,
-            descriptionHeight: 60,
-        );
-      } else{
-        return nullWidget;
-      }
-    });
-  }
 
   Widget dataPlate(){
     return BlocBuilder<LogReaderCubit, LogReaderState>(builder: (context, state){
