@@ -6,7 +6,11 @@ import 'package:duit.in/theme/theme.dart';
 import 'package:duit.in/widgets/customtextbutton.dart';
 
 class NameChangePage extends StatefulWidget{
-  const NameChangePage({Key? key}) : super(key: key);
+  final String passedName;
+  const NameChangePage(
+      {Key? key,
+        required this.passedName,
+      }) : super(key: key);
 
   @override
   State<NameChangePage> createState() => _NameChangePageState();
@@ -91,6 +95,10 @@ class _NameChangePageState extends State<NameChangePage>{
         },
         listener: (context, state){
           if (state is AuthSuccess){
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text("Name Successfully changed"),
+              backgroundColor: green,
+            ));
             Navigator.pushNamedAndRemoveUntil(
                 context, '/nav-page', (route) => false);
           } else if (state is AuthFailed){
@@ -104,6 +112,10 @@ class _NameChangePageState extends State<NameChangePage>{
   }
 
   @override
+  void initState(){
+    nameController.text = this.widget.passedName;
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         body: ListView(

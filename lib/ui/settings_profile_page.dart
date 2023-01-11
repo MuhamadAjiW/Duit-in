@@ -13,6 +13,8 @@ class ProfilePage extends StatefulWidget{
 }
 
 class _ProfilePageState extends State<ProfilePage>{
+  String passedName = '';
+
   Widget openingPlate(){
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 5),
@@ -44,6 +46,7 @@ class _ProfilePageState extends State<ProfilePage>{
   Widget profileBlock(){
     return BlocBuilder<AuthCubit, AuthState>(builder: (context, state){
       if (state is AuthSuccess){
+        passedName = state.user.name;
         return Center(
           child: Container(
             margin: EdgeInsets.symmetric(horizontal: 5),
@@ -93,7 +96,7 @@ class _ProfilePageState extends State<ProfilePage>{
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => NameChangePage()));
+                          builder: (context) => NameChangePage(passedName: passedName,)));
                 },
                 child: Text(
                   'Change Name',

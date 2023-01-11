@@ -49,6 +49,9 @@ dependencies:
   # Bloc
   flutter_bloc: ^8.1.1
 
+  # Graphs
+  draw_graph: ^1.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

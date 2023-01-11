@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage>{
   Widget spendingPlate(){
     return BlocBuilder<LogReaderCubit, LogReaderState>(builder: (context, state){
       if (state is LogReaderSuccess){
-        int sum = getsumOfDay(state.logs);
+        int sum = getsumOfPastDays(state.logs, 0);
         return Container(
           margin: EdgeInsets.symmetric(horizontal: 5),
           child: Column(

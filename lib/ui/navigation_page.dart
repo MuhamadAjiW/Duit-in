@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:duit.in/cubit/auth_cubit.dart';
 import 'package:duit.in/theme/theme.dart';
 
 import 'package:duit.in/ui/home_page.dart';
@@ -36,8 +34,6 @@ class _NavState extends State<NavPage>{
   }
 
   Widget bottomNavBar(){
-    return BlocBuilder<AuthCubit, AuthState>(
-        builder: (context, state){
             return BottomNavigationBar(
               type: BottomNavigationBarType.fixed,
               currentIndex: currentIndex,
@@ -63,8 +59,6 @@ class _NavState extends State<NavPage>{
                   currentIndex = index;
                 });
               },);
-        }
-    );
   }
 
   final tabs = [
