@@ -93,3 +93,34 @@ double getMax(
     return comparator;
   }
 }
+
+String getDayName(
+  int MinDayCoeff
+){
+  DateTime requestedDate = DateTime.now().subtract(Duration(days: MinDayCoeff));
+
+  print(requestedDate);
+  if (requestedDate.weekday == 1){
+    return "Mon";
+  }
+  if (requestedDate.weekday == 2){
+    return "Tue";
+  }
+  if (requestedDate.weekday == 3){
+    return "Wed";
+  }
+  if (requestedDate.weekday == 4){
+    return "Thu";
+  }
+  if (requestedDate.weekday == 5){
+    return "Fri";
+  }
+  if (requestedDate.weekday == 6){
+    return "Sat";
+  }
+  if (requestedDate.weekday == 7){
+    return "Sun";
+  }
+
+  return '';
+}

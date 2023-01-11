@@ -1,10 +1,10 @@
-import 'dart:math';
 
 import 'package:duit.in/models/log_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:draw_graph/draw_graph.dart';
 import 'package:draw_graph/models/feature.dart';
+import 'package:fl_chart/fl_chart.dart';
 
 import 'package:duit.in/cubit/log_reader_cubit.dart';
 import 'package:duit.in/theme/theme.dart';
@@ -32,6 +32,88 @@ class _DataPageState extends State<DataPage>{
   }
 
   Widget graphDaily(){
+    return BlocBuilder<LogReaderCubit, LogReaderState>(
+        builder: (context, state){
+          if (state is LogReaderSuccess){
+            List<FlSpot> dataList = [];
+            for (int daysBefore = 6; daysBefore >= 0; daysBefore--){
+              dataList.add(
+                  FlSpot(
+                      6 - daysBefore.toDouble(),
+                      getsumOfPastDays(state.logs, daysBefore)
+                          .toDouble()));
+            }
+
+            print(dataList);
+
+            List<String> dateList = [];
+            for (int daysBefore = 6; daysBefore <= 0; daysBefore--){
+
+            }
+
+            SideTitles _bottomTitles = SideTitles(
+                showTitles: true,
+                getTitlesWidget: (value, meta) {
+                  String text = '';
+
+                  if (value == 0.0){
+                    return Text(getDayName(6));
+                  }
+                  if (value == 1.0){
+                    return Text(getDayName(5));
+                  }
+                  if (value == 2.0){
+                    return Text(getDayName(4));
+                  }
+                  if (value == 3.0){
+                    return Text(getDayName(3));
+                  }
+                  if (value == 4.0){
+                    return Text(getDayName(2));
+                  }
+                  if (value == 5.0){
+                    return Text(getDayName(1));
+                  }
+                  if (value == 6.0){
+                    return Text(getDayName(0));
+                  }
+                  return Text(text);
+                }
+            );
+
+            return AspectRatio(
+              aspectRatio: 2,
+              child: LineChart(
+                LineChartData(
+                  lineBarsData: [
+                    LineChartBarData(
+                        spots: dataList,
+                        isCurved: false,
+                        dotData: FlDotData(
+                          show: true,
+                        ),
+                        color: Colors.red
+                    ),
+                  ],
+                  borderData: FlBorderData(
+                      border: const Border(bottom: BorderSide(), left: BorderSide())),
+                  gridData: FlGridData(show: false),
+                  titlesData: FlTitlesData(
+                    bottomTitles: AxisTitles(sideTitles: _bottomTitles),
+                    leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                    topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                    rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                  ),
+                ),
+              ),
+            );
+          } else{
+            return nullWidget;
+          }
+        });
+  }
+
+  Widget graphDailyCrude(){
     return BlocBuilder<LogReaderCubit, LogReaderState>(
       builder: (context, state){
       if (state is LogReaderSuccess){

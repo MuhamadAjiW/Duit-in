@@ -51,6 +51,7 @@ dependencies:
 
   # Graphs
   draw_graph: ^1.0.0
+  fl_chart: ^0.55.2
 
 dev_dependencies:
   flutter_test:
