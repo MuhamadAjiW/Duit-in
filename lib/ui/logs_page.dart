@@ -1,5 +1,6 @@
 import 'package:duit.in/models/log_model.dart';
 import 'package:duit.in/widgets/customlogbutton.dart';
+import 'package:duit.in/widgets/customnavbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:duit.in/cubit/log_reader_cubit.dart';
@@ -14,6 +15,8 @@ class LogsPage extends StatefulWidget{
 }
 
 class _LogsPageState extends State<LogsPage>{
+  int category = 0;
+
   Widget openingPlate(){
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 5),
@@ -38,11 +41,19 @@ class _LogsPageState extends State<LogsPage>{
             );
           }
           else if (state is LogReaderSuccess){
+
             var logs = state.logs;
+            if (category == 1){
+              logs = logs.where((log) => log.keterangan == "Pendapatan").toList();
+            }
+            else{
+              logs = logs.where((log) => log.keterangan != "Pendapatan").toList();
+            }
+
 
             if (logs.isNotEmpty){
               return Container(
-                height: MediaQuery.of(context).size.height - 210,
+                height: MediaQuery.of(context).size.height - 260,
                 child: ListView.builder(
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
@@ -98,6 +109,34 @@ class _LogsPageState extends State<LogsPage>{
     );
   }
 
+  Widget categorySelect(){
+    return CustomNavBar(
+        category1: "Transactions",
+        category2: "Income",
+        category3: "Expenses",
+        ratio1: 5,
+        ratio2: 4,
+        ratio3: 4,
+        sideratio: 1,
+        onPressed1: (){
+          setState(() {
+            category = 0;
+          });
+        },
+        onPressed2: (){
+          print("ctg "+category.toString());
+          setState(() {
+            category = 1;
+          });
+          print("ctg "+category.toString());
+        },
+        onPressed3: (){
+          setState(() {
+            category = 2;
+          });
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -109,7 +148,8 @@ class _LogsPageState extends State<LogsPage>{
         children: [
           SizedBox(height: 85,),
           openingPlate(),
-          SizedBox(height: 10,),
+          SizedBox(height: 30,),
+          categorySelect(),
           listOfLogs(),
         ],
       ),
