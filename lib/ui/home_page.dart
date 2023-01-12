@@ -43,17 +43,29 @@ class _HomePageState extends State<HomePage>{
     return BlocBuilder<LogReaderCubit, LogReaderState>(builder: (context, state){
       if (state is LogReaderSuccess){
         int sum = getsumOfPastDays(state.logs, 0);
+        String openingText = '';
+        String subtext = '';
+        if (sum > 0){
+          openingText = "Today you have spent:";
+          subtext = currencyForm(sum.abs().toString());
+        } else if (sum < 0){
+          openingText = "Today you have earned:";
+          subtext = currencyForm(sum.abs().toString());
+        } else{
+          openingText = "How are you feeling today?";
+        }
+
         return Container(
           margin: EdgeInsets.symmetric(horizontal: 5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Today you have spent: ', style: defaultTextTheme.copyWith(
+              Text(openingText, style: defaultTextTheme.copyWith(
                 fontSize: 16,
                 fontWeight: light,
               )),
               SizedBox(height: 10,),
-              Text(currencyForm(sum.toString()), style: defaultTextTheme.copyWith(
+              Text(subtext, style: defaultTextTheme.copyWith(
                 fontSize: 16,
                 fontWeight: medium,
               )),

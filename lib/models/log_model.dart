@@ -54,7 +54,12 @@ String currencyForm(String val){
 int getsum(List<LogModel> loglist){
   int sum = 0;
   for(int i = 0; i < loglist.length; i++){
-    sum += loglist[i].nilai;
+    if (loglist[i].keterangan == "Pendapatan"){
+      sum -= loglist[i].nilai;
+    }
+    else{
+      sum += loglist[i].nilai;
+    }
   }return sum;
 }
 
@@ -69,7 +74,12 @@ int getsumOfPastDays(
         && loglist[i].waktu.month == requestedDate.month
         && loglist[i].waktu.year == requestedDate.year
     ){
-      sum += loglist[i].nilai;
+      if (loglist[i].keterangan == "Pendapatan"){
+        sum -= loglist[i].nilai;
+      }
+      else{
+        sum += loglist[i].nilai;
+      }
     }
   }return sum;
 }
