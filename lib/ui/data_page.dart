@@ -29,7 +29,87 @@ class _DataPageState extends State<DataPage>{
     );
   }
 
-  Widget graphDaily(){
+  Widget barGraphDaily(){
+    return BlocBuilder<LogReaderCubit, LogReaderState>(
+        builder: (context, state){
+          if (state is LogReaderSuccess){
+            List<BarChartGroupData> _chartGroups(){
+              List<BarChartGroupData> _retval = [];
+
+              for (int daysBefore = 6; daysBefore >= 0; daysBefore--){
+                double y = getsumOfPastDays(state.logs, daysBefore).toDouble() * (-1);
+
+                _retval.add(
+                  BarChartGroupData(
+                      x: 6 - daysBefore.toInt(),
+                      barRods: [
+                        BarChartRodData(
+                          toY: y,
+                          color: y > 0? green : red ,
+                        )
+                      ]
+                  ),
+                );
+              }
+
+              return _retval;
+            }
+
+            SideTitles _bottomTitles = SideTitles(
+                showTitles: true,
+                getTitlesWidget: (value, meta) {
+                  String text = '';
+
+                  if (value == 0.0){
+                    return Text(getDayName(6, true));
+                  }
+                  if (value == 1.0){
+                    return Text(getDayName(5, true));
+                  }
+                  if (value == 2.0){
+                    return Text(getDayName(4, true));
+                  }
+                  if (value == 3.0){
+                    return Text(getDayName(3, true));
+                  }
+                  if (value == 4.0){
+                    return Text(getDayName(2, true));
+                  }
+                  if (value == 5.0){
+                    return Text(getDayName(1, true));
+                  }
+                  if (value == 6.0){
+                    return Text(getDayName(0, true));
+                  }
+                  return Text(text);
+                }
+            );
+
+            return AspectRatio(
+              aspectRatio: 2,
+              child: BarChart(
+                BarChartData(
+                  barGroups: _chartGroups(),
+                  borderData: FlBorderData(
+                      border: const Border(bottom: BorderSide(), left: BorderSide())),
+                  gridData: FlGridData(show: false),
+                  titlesData: FlTitlesData(
+                    bottomTitles: AxisTitles(sideTitles: _bottomTitles),
+                    leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                    topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                    rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                  ),
+                ),
+              ),
+            );
+
+          } else{
+            return nullWidget;
+          }
+        });
+  }
+
+  Widget lineGraphDaily(){
     return BlocBuilder<LogReaderCubit, LogReaderState>(
         builder: (context, state){
           if (state is LogReaderSuccess){
@@ -113,7 +193,7 @@ class _DataPageState extends State<DataPage>{
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Spending graphs', style: defaultTextTheme.copyWith(
+              Text('Balance graphs', style: defaultTextTheme.copyWith(
                 fontSize: 16,
                 fontWeight: light,
               )),
@@ -143,7 +223,9 @@ class _DataPageState extends State<DataPage>{
               SizedBox(height: 20,),
               dataPlate(),
               SizedBox(height: 20,),
-              graphDaily(),
+              barGraphDaily(),
+              SizedBox(height: 20,),
+              lineGraphDaily(),
             ],
           ),
         )
