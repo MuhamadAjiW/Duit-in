@@ -1,4 +1,6 @@
 
+import 'dart:math';
+
 import 'package:duit.in/models/log_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -85,14 +87,26 @@ class _DataPageState extends State<DataPage>{
                 }
             );
 
+            double maxVal = 0;
+
+            for (int daysBefore = 6; daysBefore >= 0; daysBefore--) {
+              double y = getsumOfPastDays(state.logs, daysBefore).toDouble() *
+                  (-1);
+              maxVal = max(maxVal, y.abs());
+            }
+
+            print(maxVal);
             return AspectRatio(
               aspectRatio: 2,
               child: BarChart(
                 BarChartData(
+                  baselineY: 0,
+                  maxY: maxVal,
+                  minY: maxVal*(-1),
                   barGroups: _chartGroups(),
                   borderData: FlBorderData(
                       border: const Border(bottom: BorderSide(), left: BorderSide())),
-                  gridData: FlGridData(show: false),
+                  gridData: FlGridData(show: true),
                   titlesData: FlTitlesData(
                     bottomTitles: AxisTitles(sideTitles: _bottomTitles),
                     leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
@@ -168,8 +182,8 @@ class _DataPageState extends State<DataPage>{
                   ],
                   borderData: FlBorderData(
                       border: const Border(bottom: BorderSide(), left: BorderSide())),
-                  gridData: FlGridData(show: false),
-                  titlesData: FlTitlesData(
+                    gridData: FlGridData(show: false),
+                    titlesData: FlTitlesData(
                     bottomTitles: AxisTitles(sideTitles: _bottomTitles),
                     leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
                     topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
