@@ -1,6 +1,5 @@
 import 'package:duit.in/models/log_model.dart';
 import 'package:duit.in/widgets/customlogbutton.dart';
-import 'package:duit.in/widgets/customnavbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:duit.in/cubit/log_reader_cubit.dart';
@@ -14,7 +13,7 @@ class LogsPage extends StatefulWidget{
   State<LogsPage> createState() => _LogsPageState();
 }
 
-class _LogsPageState extends State<LogsPage>{
+class _LogsPageState extends State<LogsPage> with TickerProviderStateMixin{
   int category = 0;
 
   Widget openingPlate(){
@@ -89,7 +88,7 @@ class _LogsPageState extends State<LogsPage>{
             }
             else{
               return Container(
-                margin: EdgeInsets.symmetric(horizontal: 5),
+                margin: EdgeInsets.symmetric(horizontal: 5, vertical: 30),
                 child: Text("No logs available", style: defaultTextTheme,),
               );
             }
@@ -108,33 +107,44 @@ class _LogsPageState extends State<LogsPage>{
         }
     );
   }
+  Widget tabBar(){
+      return Stack(
+        alignment: Alignment.topLeft,
+        children: [
+          TabBar(
+            isScrollable: true,
+            controller: TabController(
+                initialIndex: category,
+                length: 3,
+                vsync: this
+            ),
+            tabs: [
+              Tab( text: 'Transactions',),
+              Tab( text: 'Income',),
+              Tab( text: 'Expenses', ),
+            ],
+            labelStyle: defaultTextTheme,
+            labelColor: black,
+            unselectedLabelColor: gray,
+            indicatorSize: TabBarIndicatorSize.tab,
+            indicatorColor: gray,
 
-  Widget categorySelect(){
-    return CustomNavBar(
-        category1: "Transactions",
-        category2: "Income",
-        category3: "Expenses",
-        ratio1: 5,
-        ratio2: 4,
-        ratio3: 4,
-        sideratio: 1,
-        onPressed1: (){
-          setState(() {
-            category = 0;
-          });
-        },
-        onPressed2: (){
-          print("ctg "+category.toString());
-          setState(() {
-            category = 1;
-          });
-          print("ctg "+category.toString());
-        },
-        onPressed3: (){
-          setState(() {
-            category = 2;
-          });
-        });
+            onTap: (index){
+              setState((){
+                category = index;
+              });
+            },
+          ),
+          Container(
+           child: Column(
+            children: [
+              SizedBox(height: 40,),
+              Divider(color: gray,),
+            ],
+            )
+          )
+        ],
+      );
   }
 
   @override
@@ -148,8 +158,8 @@ class _LogsPageState extends State<LogsPage>{
         children: [
           SizedBox(height: 85,),
           openingPlate(),
-          SizedBox(height: 30,),
-          categorySelect(),
+          SizedBox(height: 10,),
+          tabBar(),
           listOfLogs(),
         ],
       ),

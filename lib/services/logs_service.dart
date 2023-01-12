@@ -43,7 +43,6 @@ class LogService {
     required DateTime oldWaktu,
     String notes = '-',
   }) async {
-    print(oldWaktu.toString());
     try{
       final nilai = int.parse(nilaiRaw);
       LogModel log = LogModel(

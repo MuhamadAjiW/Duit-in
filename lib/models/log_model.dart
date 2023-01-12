@@ -99,8 +99,6 @@ String getDayName(
   bool shortened,
 ){
   DateTime requestedDate = DateTime.now().subtract(Duration(days: MinDayCoeff));
-
-  print(requestedDate);
   if (shortened){
     if (requestedDate.weekday == 1){
       return "Mon";
@@ -212,8 +210,8 @@ String getLogTimeMarker(
 && time.year == DateTime.now().subtract(Duration(days: 1)).year){
     retval += "Yesterday, at " + time.hour.toString() + '.' + time.minute.toString();
   }
-  else if(DateTime.now().isAfter(DateTime.now().subtract(Duration(days: 7)))){
-    int diff = DateTime.now().difference(time).inDays;
+  else if(DateTime.now().isAfter(DateTime.now().subtract(Duration(days: 6)))){
+    int diff = DateTime.now().difference(time).inDays + 1;
     retval += getDayName(diff, false) + ", at " + time.hour.toString() + '.' + time.minute.toString();;
   }
   else{
