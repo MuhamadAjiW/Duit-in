@@ -33,6 +33,70 @@ class _NavState extends State<NavPage>{
     //placeholder
   }
 
+  Widget bottomNavBarAlt(){
+    return NavigationBar(
+      height: 70,
+      backgroundColor: Colors.white,
+      selectedIndex: currentIndex,
+      destinations: [
+        NavigationDestination(
+            icon: Icon(
+                Icons.home_outlined,
+                color: gray,
+                size: 30,
+            ),
+            label: 'Home',
+            selectedIcon: Icon(
+                Icons.home_filled,
+                color: blue,
+                size: 30,
+            )),
+        NavigationDestination(
+            icon: Icon(
+                Icons.auto_graph_outlined,
+                color: gray,
+                size: 30,
+            ),
+            label: 'Data',
+            selectedIcon: Icon(
+                Icons.auto_graph,
+                color: blue,
+                size: 30,
+            )),
+        NavigationDestination(
+            icon: Icon(
+                Icons.receipt_outlined,
+                color: gray,
+                size: 30,
+            ),
+            label: 'Logs',
+            selectedIcon: Icon(
+                Icons.receipt_sharp,
+                color: blue,
+                size: 30,
+            )),
+        NavigationDestination(
+            icon: Icon(
+                Icons.settings,
+                color: gray,
+                size: 30,
+            ),
+            label: 'Settings',
+            selectedIcon: Icon(
+              Icons.settings,
+              color: blue,
+              size: 30,
+            )),
+      ],
+      onDestinationSelected: (index){
+        setState((){
+          currentIndex = index;
+        });
+      },
+      labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+    );
+  }
+
   Widget bottomNavBar(){
             return BottomNavigationBar(
               type: BottomNavigationBarType.fixed,
@@ -78,7 +142,7 @@ class _NavState extends State<NavPage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: bottomNavBar(),
+      bottomNavigationBar: bottomNavBarAlt(),
       floatingActionButton: floatingTab[currentIndex],
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       backgroundColor: white,
