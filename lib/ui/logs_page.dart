@@ -45,7 +45,7 @@ class _LogsPageState extends State<LogsPage> with TickerProviderStateMixin{
             if (category == 1){
               logs = logs.where((log) => log.keterangan == "Pendapatan").toList();
             }
-            else{
+            else if (category == 2){
               logs = logs.where((log) => log.keterangan != "Pendapatan").toList();
             }
 
