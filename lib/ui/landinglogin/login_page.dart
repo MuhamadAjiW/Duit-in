@@ -361,7 +361,7 @@ class _LoginPageState extends State<LoginPage>{
               toLogin();
             },
             buttonColor: Colors.transparent,
-            text: 'Don\'t have an account? Sign up',
+            text: 'Already have an account? Sign in',
             textSize: 12,
             textColor: black),
         SizedBox(height: 30),
