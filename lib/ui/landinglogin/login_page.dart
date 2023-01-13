@@ -60,6 +60,7 @@ class _LoginPageState extends State<LoginPage>{
           return Container(
             width: 240,
             decoration: BoxDecoration(
+              color: blue,
               border: Border.all(
                 color: black,
                 width: 1,
@@ -108,6 +109,7 @@ class _LoginPageState extends State<LoginPage>{
           return Container(
             width: 240,
             decoration: BoxDecoration(
+                color: blue,
                 border: Border.all(
                   color: black,
                   width: 1,
@@ -123,7 +125,7 @@ class _LoginPageState extends State<LoginPage>{
                       confpass: confpassController.text);
                 },
                 child: Text(
-                  "Login",
+                  "Sign up",
                   style: defaultTextTheme.copyWith(
                       fontSize: 16
                   ),
@@ -362,9 +364,9 @@ class _LoginPageState extends State<LoginPage>{
             heightVal: 30,
             onPressed: (){
               setState(() {
+                currentOpacity = 0;
                 entryheightval = 425;
                 entryBodyCurrent = 0;
-                currentOpacity = 0;
               });
               Timer(Duration(milliseconds: 300), (){
                 setState(() {
