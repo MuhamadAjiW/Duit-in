@@ -95,7 +95,6 @@ class _DataPageState extends State<DataPage>{
               maxVal = max(maxVal, y.abs());
             }
 
-            print(maxVal);
             return AspectRatio(
               aspectRatio: 2,
               child: BarChart(

@@ -31,6 +31,8 @@ class _LandingPageState extends State<LandingPage>{
               );
             }
             return CustomTextButton(
+              borderWidth: 1,
+              borderColor: gray,
               widthVal: 300,
               heightVal: 50,
               buttonColor: Colors.transparent,

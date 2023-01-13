@@ -56,7 +56,7 @@ String currencyForm(String val){
 
 int getsum(List<LogModel> loglist){
   int sum = 0;
-  for(int i = 0; i < loglist.length; i++){
+  for(int i = 0; i <= loglist.length; i++){
     if (loglist[i].keterangan == "Pendapatan"){
       sum -= loglist[i].nilai;
     }
@@ -166,7 +166,6 @@ String getMonthName(
     DateTime requestedDate
     ){
 
-  print(requestedDate);
   if (requestedDate.month == 1){
     return "Jan";
   }
