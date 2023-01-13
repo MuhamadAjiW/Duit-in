@@ -366,7 +366,11 @@ class _LoginPageState extends State<LoginPage>{
               setState(() {
                 currentOpacity = 0;
                 entryheightval = 425;
-                entryBodyCurrent = 0;
+              });
+              Timer(Duration(milliseconds: 100), (){
+                setState(() {
+                  entryBodyCurrent = 0;
+                });
               });
               Timer(Duration(milliseconds: 300), (){
                 setState(() {
