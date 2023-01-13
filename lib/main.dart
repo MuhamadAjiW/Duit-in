@@ -1,4 +1,5 @@
 //import dari third party
+import 'package:duit.in/ui/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         routes: {
           '/nav-page': (context) => NavPage(),
-          '/landing-page': (context) => LandingPage()
+          '/landing-page': (context) => LoginPage(),
         },
       )
     );

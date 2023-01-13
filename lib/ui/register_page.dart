@@ -1,4 +1,5 @@
 import 'package:duit.in/cubit/log_reader_cubit.dart';
+import 'package:duit.in/ui/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:duit.in/cubit/auth_cubit.dart';
@@ -42,7 +43,8 @@ class _RegisterPageState extends State<RegisterPage>{
                  context.read<AuthCubit>().signUp(
                      name: nameController.text,
                      email: emailController.text,
-                     password: passController.text);
+                     password: passController.text,
+                      confpass: passController.text);
                 },
             );
           },
@@ -101,7 +103,7 @@ class _RegisterPageState extends State<RegisterPage>{
                   onPressed: (){
                     Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LandingPage()));
+                        MaterialPageRoute(builder: (context) => LoginPage()));
                   },
                   buttonColor: Colors.transparent,
                   text: 'Already have an account? Sign in',

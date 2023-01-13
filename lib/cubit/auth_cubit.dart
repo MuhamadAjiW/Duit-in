@@ -29,12 +29,18 @@ class AuthCubit extends Cubit<AuthState> {
     required String name,
     required String email,
     required String password,
+    required String confpass,
   }) async {
     try {
       emit(AuthLoading());
-      UserModel user =
-      await AuthService().signUp(name: name, email: email, password: password);
-      emit(AuthSuccess(user));
+      if (password == confpass){
+        UserModel user =
+        await AuthService().signUp(name: name, email: email, password: password);
+        emit(AuthSuccess(user));
+      }
+      else{
+        emit(AuthFailed("Password did not match"));
+      }
     } catch (e) {
       emit(AuthFailed(e.toString()));
     }
@@ -86,7 +92,7 @@ class AuthCubit extends Cubit<AuthState> {
         emit(AuthSuccess(oldUser));
       }
       else if(newPass != confPass){
-        emit(AuthFailed("Password confirmation failed"));
+        emit(AuthFailed("Password did not match"));
         emit(AuthSuccess(oldUser));
       }
       else{
