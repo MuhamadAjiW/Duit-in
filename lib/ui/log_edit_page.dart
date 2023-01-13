@@ -8,12 +8,14 @@ import 'package:duit.in/theme/theme.dart';
 import 'package:duit.in/widgets/customtextbutton.dart';
 
 class EditLogPage extends StatefulWidget{
+  final String logId;
   final String keterangan;
   final int nilai;
   final DateTime waktu;
   final String notes;
   const EditLogPage(
       {Key? key,
+        required this.logId,
         required this.keterangan,
         required this.nilai,
         required this.waktu,
@@ -163,6 +165,7 @@ class _AddLogState extends State<EditLogPage>{
               onPressed: (){
                 if (notesController.text.isEmpty){
                   context.read<LogCubit>().editLog(
+                    id: this.widget.logId,
                     oldUid: uid,
                     nilaiRaw: valController.text,
                     oldWaktu: this.widget.waktu,
@@ -172,6 +175,7 @@ class _AddLogState extends State<EditLogPage>{
                 }
                 else{
                   context.read<LogCubit>().editLog(
+                    id: this.widget.logId,
                     oldUid: uid,
                     nilaiRaw: valController.text,
                     oldWaktu: this.widget.waktu,

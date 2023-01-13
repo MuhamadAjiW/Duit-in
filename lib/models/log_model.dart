@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class LogModel extends Equatable{
+  final String logId;
   final String keterangan;
   final int nilai;
   final String uid;
@@ -8,6 +9,7 @@ class LogModel extends Equatable{
   final String notes;
 
   LogModel({
+    required this.logId,
     required this.uid,
     required this.nilai,
     required this.keterangan,
@@ -15,8 +17,9 @@ class LogModel extends Equatable{
     this.notes = '',
   });
 
-  static LogModel fromJson(Map<String, dynamic> json){
+  static LogModel fromJson(Map<String, dynamic> json, String id){
     return LogModel(
+        logId: id,
         uid: json['uid'],
         nilai: json['nilai'],
         keterangan: json['keterangan'],
@@ -27,7 +30,7 @@ class LogModel extends Equatable{
 
   @override
   List<Object?> get props {
-    return [uid, nilai, keterangan, waktu, notes];
+    return [logId, uid, nilai, keterangan, waktu, notes];
   }
 }
 

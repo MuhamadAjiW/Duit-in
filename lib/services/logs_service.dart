@@ -15,21 +15,26 @@ class LogService {
   }) async {
     try{
       final nilai = int.parse(nilaiRaw);
-      LogModel log = LogModel(
-          uid: uid,
-          nilai: nilai,
-          keterangan: keterangan,
-          waktu: DateTime.now(),
-          notes: notes,
-      );
-      String stamp = waktu.toString().substring(0,23);
-      await _logsReference.doc(stamp).set({
+      String idval = '';
+
+      await _logsReference.add({
         'uid': uid,
         'nilai': nilai,
         'keterangan' : keterangan,
         'waktu' : waktu,
         'notes' : notes,
+      }).then((value){
+        idval = value.id;
       });
+      print(idval);
+      LogModel log = LogModel(
+        logId: idval,
+        uid: uid,
+        nilai: nilai,
+        keterangan: keterangan,
+        waktu: DateTime.now(),
+        notes: notes,
+      );
       return log;
     } catch (e){
       throw e;
@@ -37,6 +42,7 @@ class LogService {
   }
 
   Future<LogModel> editLog({
+    required String id,
     required String oldUid,
     required String nilaiRaw,
     required String keterangan,
@@ -45,18 +51,21 @@ class LogService {
   }) async {
     try{
       final nilai = int.parse(nilaiRaw);
+      await _logsReference.doc(id).update({
+        'nilai': nilai,
+        'keterangan' : keterangan,
+        'notes' : notes,
+      });
+
       LogModel log = LogModel(
+        logId: id,
         uid: oldUid,
         nilai: nilai,
         keterangan: keterangan,
         waktu: oldWaktu,
         notes: notes,
       );
-      await _logsReference.doc(oldWaktu.toString()).update({
-        'nilai': nilai,
-        'keterangan' : keterangan,
-        'notes' : notes,
-      });
+
       return log;
     } catch (e){
       throw e;
@@ -64,10 +73,10 @@ class LogService {
   }
 
   Future<void> deleteLog({
-    required DateTime oldWaktu,
+    required String logId,
   }) async {
     try{
-      await _logsReference.doc(oldWaktu.toString()).delete();
+      await _logsReference.doc(logId).delete();
     } catch(e){
       throw e;
     }
@@ -79,7 +88,7 @@ class LogService {
     try {
       QuerySnapshot result = await _logsReference.where("uid", isEqualTo: uid).get();
       List<LogModel> logs = result.docs.map((e) {
-        return LogModel.fromJson(e.data() as Map<String, dynamic>);
+        return LogModel.fromJson(e.data() as Map<String, dynamic>, e.id);
       }).toList();
       return logs;
     } catch(e){

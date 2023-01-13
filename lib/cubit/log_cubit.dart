@@ -34,6 +34,7 @@ class LogCubit extends Cubit<LogState> {
   }
 
   void editLog({
+    required String id,
     required String oldUid,
     required String nilaiRaw,
     required String keterangan,
@@ -44,6 +45,7 @@ class LogCubit extends Cubit<LogState> {
       emit(LogLoading());
       LogModel log =
       await LogService().editLog(
+          id: id,
           oldUid: oldUid,
           nilaiRaw: nilaiRaw,
           keterangan: keterangan,
@@ -58,11 +60,11 @@ class LogCubit extends Cubit<LogState> {
   }
 
   void deleteLog({
-    required DateTime oldWaktu,
+    required String logId,
   }) async{
     try{
       emit(LogLoading());
-      await LogService().deleteLog(oldWaktu: oldWaktu);
+      await LogService().deleteLog(logId: logId);
       emit(LogInitial());
     } catch(e){
       throw e;

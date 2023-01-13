@@ -71,6 +71,7 @@ class _LogsPageState extends State<LogsPage> with TickerProviderStateMixin{
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => LogDetailPage(
+                                              logId: logs[logs.length - 1 - index].logId,
                                               uid: logs[logs.length - 1 - index].uid,
                                               keterangan: logs[logs.length - 1 - index].keterangan,
                                               nilai: logs[logs.length - 1 - index].nilai,

@@ -8,6 +8,7 @@ import 'package:duit.in/theme/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LogDetailPage extends StatefulWidget{
+  String logId;
   String uid;
   String keterangan;
   int nilai;
@@ -15,6 +16,7 @@ class LogDetailPage extends StatefulWidget{
   String notes;
   LogDetailPage(
       {Key? key,
+        required this.logId,
         required this.uid,
         required this.keterangan,
         required this.nilai,
@@ -157,6 +159,7 @@ class _LogDetailPageState extends State<LogDetailPage>{
                 context,
                 MaterialPageRoute(
                     builder: (context) => EditLogPage(
+                        logId: this.widget.logId,
                         keterangan: this.widget.keterangan,
                         nilai: this.widget.nilai,
                         waktu: this.widget.waktu,
@@ -172,7 +175,7 @@ class _LogDetailPageState extends State<LogDetailPage>{
   }
 
   void deletefunction(){
-    context.read<LogCubit>().deleteLog(oldWaktu: this.widget.waktu);
+    context.read<LogCubit>().deleteLog(logId: this.widget.logId);
     context.read<LogReaderCubit>().readLogs(this.widget.uid);
     Navigator.pop(context);
     Navigator.pop(context);
