@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:duit.in/cubit/auth_cubit.dart';
 import 'package:duit.in/theme/theme.dart';
-import 'package:duit.in/ui/settings_change_name.dart';
+import 'package:duit.in/ui/settings/settings_change_name.dart';
 
 
 class ProfilePage extends StatefulWidget{

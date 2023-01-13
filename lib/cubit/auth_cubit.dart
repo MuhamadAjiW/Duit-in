@@ -33,13 +33,18 @@ class AuthCubit extends Cubit<AuthState> {
   }) async {
     try {
       emit(AuthLoading());
-      if (password == confpass){
-        UserModel user =
+      if (password.length < 8){
+        emit(AuthFailed("Password must be longer than 8 characters"));UserModel user =
         await AuthService().signUp(name: name, email: email, password: password);
         emit(AuthSuccess(user));
       }
-      else{
+      else if (password != confpass){
         emit(AuthFailed("Password did not match"));
+      }
+      else{
+        UserModel user =
+        await AuthService().signUp(name: name, email: email, password: password);
+        emit(AuthSuccess(user));
       }
     } catch (e) {
       emit(AuthFailed(e.toString()));
@@ -106,7 +111,7 @@ class AuthCubit extends Cubit<AuthState> {
             await AuthService().updatePass(newPass),
             signOut()}
           ).onError((error, stackTrace) => {
-            emit(AuthFailed("Old Password invalid")),
+            emit(AuthFailed("Wrong old password")),
             emit(AuthSuccess(oldUser))
           });
         }

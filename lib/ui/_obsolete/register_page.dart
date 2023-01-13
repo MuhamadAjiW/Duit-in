@@ -1,11 +1,10 @@
 import 'package:duit.in/cubit/log_reader_cubit.dart';
-import 'package:duit.in/ui/login_page.dart';
+import 'package:duit.in/ui/landinglogin/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:duit.in/cubit/auth_cubit.dart';
 
 import 'package:duit.in/theme/theme.dart';
-import 'package:duit.in/ui/landing_page.dart';
 import 'package:duit.in/widgets/custominput.dart';
 import 'package:duit.in/widgets/customtextbutton.dart';
 

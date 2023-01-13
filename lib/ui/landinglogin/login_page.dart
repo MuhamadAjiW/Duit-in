@@ -418,7 +418,7 @@ class _LoginPageState extends State<LoginPage>{
             height: double.infinity,
             width: double.infinity,
             decoration: BoxDecoration(
-              color: gray
+              color: blue
             ),
           ),
           titleBar(),

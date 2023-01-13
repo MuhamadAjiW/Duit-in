@@ -1,5 +1,5 @@
 //import dari third party
-import 'package:duit.in/ui/login_page.dart';
+import 'package:duit.in/ui/landinglogin/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,8 +12,7 @@ import 'package:duit.in/cubit/auth_cubit.dart';
 
 //import ui
 import 'package:duit.in/ui/splash_page.dart';
-import 'package:duit.in/ui/navigation_page.dart';
-import 'package:duit.in/ui/landing_page.dart';
+import 'package:duit.in/ui/navigation/navigation_page.dart';
 
 
 void main() async{

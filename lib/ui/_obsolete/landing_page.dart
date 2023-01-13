@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:duit.in/cubit/auth_cubit.dart';
 
 import 'package:duit.in/theme/theme.dart';
-import 'package:duit.in/ui/register_page.dart';
 import 'package:duit.in/widgets/custominput.dart';
 import 'package:duit.in/widgets/customtextbutton.dart';
 
@@ -92,11 +91,7 @@ class _LandingPageState extends State<LandingPage>{
               CustomTextButton(
                   widthVal: 300,
                   heightVal: 50,
-                  onPressed: (){
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => RegisterPage()));
-                  },
+                  onPressed: (){},
                   buttonColor: Colors.transparent,
                   text: 'Don\'t have an account? Sign up',
                   textSize: 12,

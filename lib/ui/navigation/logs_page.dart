@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:duit.in/cubit/log_reader_cubit.dart';
 
 import 'package:duit.in/theme/theme.dart';
-import 'package:duit.in/ui/log_detail_page.dart';
+import 'package:duit.in/ui/logs/log_detail_page.dart';
 
 class LogsPage extends StatefulWidget{
   const LogsPage({Key? key}) : super(key: key);

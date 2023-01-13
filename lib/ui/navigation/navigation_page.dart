@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:duit.in/theme/theme.dart';
 
-import 'package:duit.in/ui/home_page.dart';
-import 'package:duit.in/ui/data_page.dart';
-import 'package:duit.in/ui/logs_page.dart';
-import 'package:duit.in/ui/settings_page.dart';
+import 'package:duit.in/ui/navigation/home_page.dart';
+import 'package:duit.in/ui/navigation/data_page.dart';
+import 'package:duit.in/ui/navigation/logs_page.dart';
+import 'package:duit.in/ui/navigation/settings_page.dart';
 import 'package:duit.in/widgets/customfloatingbutton.dart';
 
 class NavPage extends StatefulWidget{

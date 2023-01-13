@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:duit.in/theme/theme.dart';
-import 'package:duit.in/ui/settings_change_pass.dart';
+import 'package:duit.in/ui/settings/settings_change_pass.dart';
 import 'package:duit.in/widgets/customsettingsbutton.dart';
 
 class SecurityPage extends StatefulWidget{

@@ -1,7 +1,7 @@
 import 'package:duit.in/cubit/log_cubit.dart';
 import 'package:duit.in/cubit/log_reader_cubit.dart';
 import 'package:duit.in/models/log_model.dart';
-import 'package:duit.in/ui/log_edit_page.dart';
+import 'package:duit.in/ui/logs/log_edit_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:duit.in/theme/theme.dart';
