@@ -102,7 +102,7 @@ class _RegisterPageState extends State<RegisterPage>{
                   onPressed: (){
                     Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LoginPage()));
+                        MaterialPageRoute(builder: (context) => LoginPage(viewState: 0,)));
                   },
                   buttonColor: Colors.transparent,
                   text: 'Already have an account? Sign in',

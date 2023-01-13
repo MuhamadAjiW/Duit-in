@@ -7,14 +7,14 @@ import 'package:duit.in/theme/theme.dart';
 import 'package:duit.in/widgets/custominput.dart';
 import 'package:duit.in/widgets/customtextbutton.dart';
 
-class LandingPage extends StatefulWidget{
-  LandingPage({Key? key}) : super(key: key);
+class LandingPageObs extends StatefulWidget{
+  LandingPageObs({Key? key}) : super(key: key);
 
   @override
-  State<LandingPage> createState() => _LandingPageState();
+  State<LandingPageObs> createState() => _LandingPageStateObs();
 }
 
-class _LandingPageState extends State<LandingPage>{
+class _LandingPageStateObs extends State<LandingPageObs>{
   final TextEditingController emailController = TextEditingController(text: '');
   final TextEditingController passController = TextEditingController(text: '');
 

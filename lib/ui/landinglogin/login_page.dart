@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:duit.in/common/screensize.dart';
 import 'package:duit.in/cubit/log_reader_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +10,11 @@ import 'package:duit.in/theme/theme.dart';
 import 'package:duit.in/widgets/customtextbutton.dart';
 
 class LoginPage extends StatefulWidget{
-  LoginPage({Key? key}) : super(key: key);
+  int viewState;
+  LoginPage(
+      {Key? key,
+      required this.viewState,
+      }) : super(key: key);
 
   @override
 
@@ -241,17 +246,7 @@ class _LoginPageState extends State<LoginPage>{
             widthVal: 230,
             heightVal: 30,
             onPressed: (){
-              setState(() {
-                entryheightval = MediaQuery.of(context).size.height - 150;
-                currentOpacity = 0;
-              });
-              Timer(Duration(milliseconds: 300), (){
-                setState(() {
-                  entryBodyCurrent = 1;
-                  currentTitlebarText = 1;
-                  currentOpacity = 1;
-                });
-              });
+              toSignup();
             },
             buttonColor: Colors.transparent,
             text: 'Don\'t have an account? Sign up',
@@ -363,21 +358,7 @@ class _LoginPageState extends State<LoginPage>{
             widthVal: 230,
             heightVal: 30,
             onPressed: (){
-              setState(() {
-                currentOpacity = 0;
-                entryheightval = 425;
-              });
-              Timer(Duration(milliseconds: 100), (){
-                setState(() {
-                  entryBodyCurrent = 0;
-                });
-              });
-              Timer(Duration(milliseconds: 300), (){
-                setState(() {
-                  currentTitlebarText = 0;
-                  currentOpacity = 1;
-                });
-              });
+              toLogin();
             },
             buttonColor: Colors.transparent,
             text: 'Don\'t have an account? Sign up',
@@ -386,6 +367,38 @@ class _LoginPageState extends State<LoginPage>{
         SizedBox(height: 30),
       ],
     );
+  }
+
+  void toLogin(){
+    setState(() {
+      currentOpacity = 0;
+      entryheightval = 425;
+    });
+    Timer(Duration(milliseconds: 100), (){
+      setState(() {
+        entryBodyCurrent = 0;
+      });
+    });
+    Timer(Duration(milliseconds: 300), (){
+      setState(() {
+        currentTitlebarText = 0;
+        currentOpacity = 1;
+      });
+    });
+  }
+
+  void toSignup(){
+    setState(() {
+      entryheightval = ScreenSize.height - 150;
+      currentOpacity = 0;
+    });
+    Timer(Duration(milliseconds: 300), (){
+      setState(() {
+        entryBodyCurrent = 1;
+        currentTitlebarText = 1;
+        currentOpacity = 1;
+      });
+    });
   }
 
   late final entryBody = [
@@ -436,6 +449,18 @@ class _LoginPageState extends State<LoginPage>{
   }
 
   @override
+  void initState(){
+    print("pass1");
+    if (widget.viewState == 1){
+      setState(() {
+        entryheightval = ScreenSize.height - 150;
+        entryBodyCurrent = 1;
+        currentTitlebarText = 1;
+        currentOpacity = 1;
+      });
+    }
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: white,

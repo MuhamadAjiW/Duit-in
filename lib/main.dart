@@ -1,4 +1,5 @@
 //import dari third party
+import 'package:duit.in/ui/landinglogin/landing_page.dart';
 import 'package:duit.in/ui/landinglogin/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -15,15 +16,16 @@ import 'package:duit.in/ui/splash_page.dart';
 import 'package:duit.in/ui/navigation/navigation_page.dart';
 
 
+
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  runApp(const MyApp());
+  runApp(const mainApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class mainApp extends StatelessWidget {
+  const mainApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,8 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         routes: {
           '/nav-page': (context) => NavPage(),
-          '/landing-page': (context) => LoginPage(),
+          '/landing-page': (context) => LandingPage(),
+          '/login-page': (context) => LoginPage(viewState: 0,),
         },
       )
     );

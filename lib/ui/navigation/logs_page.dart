@@ -1,3 +1,4 @@
+import 'package:duit.in/common/screensize.dart';
 import 'package:duit.in/models/log_model.dart';
 import 'package:duit.in/widgets/customlogbutton.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +53,7 @@ class _LogsPageState extends State<LogsPage> with TickerProviderStateMixin{
 
             if (logs.isNotEmpty){
               return Container(
-                height: MediaQuery.of(context).size.height - 260,
+                height: ScreenSize.height - 260,
                 child: ListView.builder(
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,

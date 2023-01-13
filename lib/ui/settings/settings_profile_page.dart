@@ -1,3 +1,4 @@
+import 'package:duit.in/ui/landinglogin/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:duit.in/cubit/auth_cubit.dart';
@@ -142,7 +143,11 @@ class _ProfilePageState extends State<ProfilePage>{
             ));
           } else if (state is AuthInitial){
             Navigator.pushNamedAndRemoveUntil(
-                context, '/landing-page', (route) => false);
+                context, '/landing-page', (route) => (route == '/landing-page'));
+            Navigator.push(
+                context, MaterialPageRoute(
+                builder: (context) => LoginPage(viewState: 0))
+            );
           }
         }
     );
