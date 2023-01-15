@@ -33,12 +33,12 @@ class AuthCubit extends Cubit<AuthState> {
   }) async {
     try {
       emit(AuthLoading());
-      if (password.length < 8){
+      if (password.length < 8 && password.isNotEmpty){
         emit(AuthFailed("Password must be longer than 8 characters"));UserModel user =
         await AuthService().signUp(name: name, email: email, password: password);
         emit(AuthSuccess(user));
       }
-      else if (password != confpass){
+      else if (password != confpass && confpass.isNotEmpty){
         emit(AuthFailed("Password did not match"));
       }
       else{

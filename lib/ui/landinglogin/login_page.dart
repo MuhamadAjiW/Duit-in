@@ -450,7 +450,6 @@ class _LoginPageState extends State<LoginPage>{
 
   @override
   void initState(){
-    print("pass1");
     if (widget.viewState == 1){
       setState(() {
         entryheightval = ScreenSize.height - 150;
