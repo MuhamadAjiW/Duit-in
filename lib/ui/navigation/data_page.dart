@@ -22,7 +22,7 @@ class _DataPageState extends State<DataPage>{
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Data', style: defaultTextTheme.copyWith(
+          Text('Reports', style: defaultTextTheme.copyWith(
             fontSize: 32,
             fontWeight: light,
           )),
@@ -36,13 +36,13 @@ class _DataPageState extends State<DataPage>{
         builder: (context, state){
           if (state is LogReaderSuccess){
             List<BarChartGroupData> _chartGroups(){
-              List<BarChartGroupData> _retval = [];
+              List<BarChartGroupData> retval = [];
 
               for (int daysBefore = 6; daysBefore >= 0; daysBefore--){
                 double y = getdataOfPastDays(state.logs, daysBefore, false).toDouble() * (-1);
                 double y2 = getdataOfPastDays(state.logs, daysBefore, true).toDouble();
 
-                _retval.add(
+                retval.add(
                   BarChartGroupData(
                     groupVertically: true,
                       x: 6 - daysBefore.toInt(),
@@ -60,10 +60,10 @@ class _DataPageState extends State<DataPage>{
                 );
               }
 
-              return _retval;
+              return retval;
             }
 
-            SideTitles _bottomTitles = SideTitles(
+            SideTitles bottomTitles = SideTitles(
                 showTitles: true,
                 getTitlesWidget: (value, meta) {
                   String text = '';
@@ -126,7 +126,7 @@ class _DataPageState extends State<DataPage>{
                         border: const Border(bottom: BorderSide(), left: BorderSide())),
                     gridData: FlGridData(show: true),
                     titlesData: FlTitlesData(
-                      bottomTitles: AxisTitles(sideTitles: _bottomTitles),
+                      bottomTitles: AxisTitles(sideTitles: bottomTitles),
                       leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 50, interval: maxVal/4)),
                       topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
                       rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
@@ -155,7 +155,7 @@ class _DataPageState extends State<DataPage>{
                           .toDouble()));
             }
 
-            SideTitles _bottomTitles = SideTitles(
+            SideTitles bottomTitles = SideTitles(
                 showTitles: true,
                 getTitlesWidget: (value, meta) {
                   String text = '';
@@ -203,7 +203,7 @@ class _DataPageState extends State<DataPage>{
                       border: const Border(bottom: BorderSide(), left: BorderSide())),
                     gridData: FlGridData(show: false),
                     titlesData: FlTitlesData(
-                    bottomTitles: AxisTitles(sideTitles: _bottomTitles),
+                    bottomTitles: AxisTitles(sideTitles: bottomTitles),
                     leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
                     topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
                     rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
@@ -222,7 +222,9 @@ class _DataPageState extends State<DataPage>{
     return BlocBuilder<LogReaderCubit, LogReaderState>(builder: (context, state){
       if (state is LogReaderSuccess){
         return Container(
-          margin: EdgeInsets.symmetric(horizontal: 5),
+          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          color: blue,
+          alignment: Alignment.centerLeft,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

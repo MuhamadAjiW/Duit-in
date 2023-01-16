@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage>{
                           fontWeight: light,
                         )),
                         SizedBox(height: 10,),
-                        Text('${state.user.name}', style: defaultTextTheme.copyWith(
+                        Text(state.user.name, style: defaultTextTheme.copyWith(
                           fontSize: 32,
                           fontWeight: medium,
                         )),
@@ -442,12 +442,12 @@ class _HomePageState extends State<HomePage>{
               )),
               Spacer(),
               GestureDetector(
+                onTap: widget.callback,
                 child: Text('View All', style: defaultTextTheme.copyWith(
                   fontSize: 14,
                   fontWeight: medium,
                   color: blue
                 )),
-                onTap: this.widget.callback,
               ),
             ],
           ),

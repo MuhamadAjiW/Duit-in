@@ -113,7 +113,8 @@ class _NameChangePageState extends State<NameChangePage>{
 
   @override
   void initState(){
-    nameController.text = this.widget.passedName;
+    nameController.text = widget.passedName;
+    super.initState();
   }
 
   Widget build(BuildContext context) {

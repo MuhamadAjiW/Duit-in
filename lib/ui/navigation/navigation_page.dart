@@ -36,6 +36,8 @@ class _NavState extends State<NavPage>{
   Widget bottomNavBarAlt(){
     return NavigationBar(
       height: 100,
+      elevation: 10,
+      labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
       backgroundColor: Colors.white,
       selectedIndex: currentIndex,
       destinations: [
@@ -93,7 +95,6 @@ class _NavState extends State<NavPage>{
           currentIndex = index;
         });
       },
-      labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
     );
   }
 

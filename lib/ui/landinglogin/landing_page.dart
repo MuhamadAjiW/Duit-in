@@ -3,10 +3,9 @@ import 'package:duit.in/ui/landinglogin/login_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:duit.in/theme/theme.dart';
-import 'package:duit.in/widgets/customtextbutton.dart';
 
 class LandingPage extends StatefulWidget{
-  LandingPage({Key? key}) : super(key: key);
+  const LandingPage({Key? key}) : super(key: key);
 
   @override
   State<LandingPage> createState() => _LandingPageState();

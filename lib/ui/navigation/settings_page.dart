@@ -19,8 +19,7 @@ class SettingsPage extends StatefulWidget{
 class _SettingsPageState extends State<SettingsPage>{
 
   Widget openingPlate(){
-    return Container(
-      child: Row(
+    return Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
@@ -39,8 +38,7 @@ class _SettingsPageState extends State<SettingsPage>{
             ),
           ),
         ],
-      ),
-    );
+      );
   }
 
   Widget settingsList() {

@@ -60,8 +60,7 @@ class _LogsPageState extends State<LogsPage> with TickerProviderStateMixin{
                   shrinkWrap: true,
                   itemCount: logs.length,
                   itemBuilder: (_,index){
-                      return Container(
-                        child: Column(
+                      return Column(
                           children: [
                               CustomLogButton(
                                 buttonText: logs[logs.length - 1 - index].keterangan,
@@ -83,8 +82,7 @@ class _LogsPageState extends State<LogsPage> with TickerProviderStateMixin{
                               ),
                               SizedBox(height: 10,),
                           ],
-                        ),
-                      );
+                        );
                   },
                 ),
               );
@@ -111,6 +109,12 @@ class _LogsPageState extends State<LogsPage> with TickerProviderStateMixin{
     );
   }
 
+  List<Tab> tabs = [
+    Tab( text: 'Transactions',),
+    Tab( text: 'Income',),
+    Tab( text: 'Expenses', ),
+  ];
+
   Widget tabBar(){
       return Stack(
         alignment: Alignment.topLeft,
@@ -122,11 +126,7 @@ class _LogsPageState extends State<LogsPage> with TickerProviderStateMixin{
                 length: 3,
                 vsync: this
             ),
-            tabs: [
-              Tab( text: 'Transactions',),
-              Tab( text: 'Income',),
-              Tab( text: 'Expenses', ),
-            ],
+            tabs: tabs,
             labelStyle: defaultTextTheme,
             labelColor: black,
             unselectedLabelColor: gray,
@@ -141,7 +141,7 @@ class _LogsPageState extends State<LogsPage> with TickerProviderStateMixin{
           ),
           Container(
 
-              margin: EdgeInsets.symmetric(horizontal: 10),
+           margin: EdgeInsets.symmetric(horizontal: 10),
            child: Column(
             children: [
               SizedBox(height: 40,),

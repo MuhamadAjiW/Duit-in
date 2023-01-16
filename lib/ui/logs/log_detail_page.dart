@@ -2,7 +2,6 @@ import 'package:duit.in/cubit/log_cubit.dart';
 import 'package:duit.in/cubit/log_reader_cubit.dart';
 import 'package:duit.in/models/log_model.dart';
 import 'package:duit.in/ui/logs/log_edit_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:duit.in/theme/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -74,7 +73,7 @@ class _LogDetailPageState extends State<LogDetailPage>{
                     ),
                   ),
                   SizedBox(height: 10,),
-                  Text(this.widget.waktu.toString(),
+                  Text(widget.waktu.toString(),
                     style: defaultTextTheme.copyWith(
                         fontSize: 16
                     ),
@@ -89,7 +88,7 @@ class _LogDetailPageState extends State<LogDetailPage>{
                     ),
                   ),
                   SizedBox(height: 10,),
-                  Text(this.widget.keterangan,
+                  Text(widget.keterangan,
                     style: defaultTextTheme.copyWith(
                         fontSize: 16
                     ),
@@ -104,7 +103,7 @@ class _LogDetailPageState extends State<LogDetailPage>{
                     ),
                   ),
                   SizedBox(height: 10,),
-                  Text(currencyForm(this.widget.nilai.toString()),
+                  Text(currencyForm(widget.nilai.toString()),
                     style: defaultTextTheme.copyWith(
                         fontSize: 16
                     ),
@@ -119,7 +118,7 @@ class _LogDetailPageState extends State<LogDetailPage>{
                     ),
                   ),
                   SizedBox(height: 10,),
-                  Text(this.widget.notes,
+                  Text(widget.notes,
                     style: defaultTextTheme.copyWith(
                         fontSize: 16
                     ),
@@ -133,9 +132,9 @@ class _LogDetailPageState extends State<LogDetailPage>{
         listener: (context, state){
           if (state is LogSuccess){
             setState(() {
-              this.widget.nilai = state.log.nilai;
-              this.widget.keterangan = state.log.keterangan;
-              this.widget.notes = state.log.notes;
+              widget.nilai = state.log.nilai;
+              widget.keterangan = state.log.keterangan;
+              widget.notes = state.log.notes;
             });
           }
         });
@@ -159,11 +158,11 @@ class _LogDetailPageState extends State<LogDetailPage>{
                 context,
                 MaterialPageRoute(
                     builder: (context) => EditLogPage(
-                        logId: this.widget.logId,
-                        keterangan: this.widget.keterangan,
-                        nilai: this.widget.nilai,
-                        waktu: this.widget.waktu,
-                        notes: this.widget.notes)));
+                        logId: widget.logId,
+                        keterangan: widget.keterangan,
+                        nilai: widget.nilai,
+                        waktu: widget.waktu,
+                        notes: widget.notes)));
           },
           child: Text(
             'Edit Log',
@@ -175,8 +174,8 @@ class _LogDetailPageState extends State<LogDetailPage>{
   }
 
   void deletefunction(){
-    context.read<LogCubit>().deleteLog(logId: this.widget.logId);
-    context.read<LogReaderCubit>().readLogs(this.widget.uid);
+    context.read<LogCubit>().deleteLog(logId: widget.logId);
+    context.read<LogReaderCubit>().readLogs(widget.uid);
     Navigator.pop(context);
     Navigator.pop(context);
   }

@@ -23,7 +23,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin{
   @override
   void initState(){
     currentOpacity = 1;
-    Timer(const Duration(seconds: 2), (){
+    Timer(const Duration(seconds: 3), (){
       User? user = FirebaseAuth.instance.currentUser;
       if (user == null){
         Navigator.pushNamedAndRemoveUntil(
@@ -36,6 +36,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin{
             context, '/nav-page', (route) => false);
       }
     });
+    super.initState();
   }
 
   Widget build(BuildContext context) {

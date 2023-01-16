@@ -99,13 +99,13 @@ class _AddLogState extends State<EditLogPage>{
           isExpanded: true,
           value: _selectedKet,
           items: const [
-            DropdownMenuItem(child: Text('   Makanan'), value: 'Makanan',),
-            DropdownMenuItem(child: Text('   Transport'), value: 'Transport',),
-            DropdownMenuItem(child: Text('   Housekeeping'), value: 'Housekeeping',),
-            DropdownMenuItem(child: Text('   Internet'), value: 'Internet',),
-            DropdownMenuItem(child: Text('   Bulanan'), value: 'Bulanan',),
-            DropdownMenuItem(child: Text('   Lain-lain'), value: 'Lain-lain',),
-            DropdownMenuItem(child: Text('   Pendapatan'), value: 'Pendapatan',),
+            DropdownMenuItem(value: 'Makanan',  child: Text('   Makanan'),),
+            DropdownMenuItem(value: 'Transport',  child: Text('   Transport'),),
+            DropdownMenuItem(value: 'Housekeeping', child: Text('   Housekeeping'),),
+            DropdownMenuItem(value: 'Internet', child: Text('   Internet'),),
+            DropdownMenuItem(value: 'Bulanan',  child: Text('   Bulanan'),),
+            DropdownMenuItem(value: 'Lain-lain',  child: Text('   Lain-lain'),),
+            DropdownMenuItem(value: 'Pendapatan', child: Text('   Pendapatan'),),
           ],
           onChanged: dropdownCallback),
     );
@@ -165,20 +165,20 @@ class _AddLogState extends State<EditLogPage>{
               onPressed: (){
                 if (notesController.text.isEmpty){
                   context.read<LogCubit>().editLog(
-                    id: this.widget.logId,
+                    id: widget.logId,
                     oldUid: uid,
                     nilaiRaw: valController.text,
-                    oldWaktu: this.widget.waktu,
+                    oldWaktu: widget.waktu,
                     keterangan: _selectedKet,
                     notes: ' - ',
                   );
                 }
                 else{
                   context.read<LogCubit>().editLog(
-                    id: this.widget.logId,
+                    id: widget.logId,
                     oldUid: uid,
                     nilaiRaw: valController.text,
-                    oldWaktu: this.widget.waktu,
+                    oldWaktu: widget.waktu,
                     keterangan: _selectedKet,
                     notes: notesController.text,
                   );
@@ -195,9 +195,7 @@ class _AddLogState extends State<EditLogPage>{
               text: 'Save',
               textSize: 12,
               textColor: black,
-              onPressed: (){
-                print("Please wait...");
-              },
+              onPressed: (){},
             );
           }
         },
@@ -220,8 +218,9 @@ class _AddLogState extends State<EditLogPage>{
   @override
   void initState(){
     _selectedKet = widget.keterangan;
-    valController.text = this.widget.nilai.toString();
-    notesController.text = this.widget.notes;
+    valController.text = widget.nilai.toString();
+    notesController.text = widget.notes;
+    super.initState();
   }
 
   Widget build(BuildContext context) {

@@ -458,6 +458,7 @@ class _LoginPageState extends State<LoginPage>{
         currentOpacity = 1;
       });
     }
+    super.initState();
   }
 
   Widget build(BuildContext context) {

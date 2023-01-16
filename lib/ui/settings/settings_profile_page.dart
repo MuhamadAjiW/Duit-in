@@ -62,12 +62,12 @@ class _ProfilePageState extends State<ProfilePage>{
                   ),
                 ),
                 SizedBox(height: 20,),
-                Text('${state.user.name}', style: defaultTextTheme.copyWith(
+                Text(state.user.name, style: defaultTextTheme.copyWith(
                   fontSize: 28,
                   fontWeight: medium,
                 )),
                 SizedBox(height: 10,),
-                Text('${state.user.email}', style: grayTextTheme.copyWith(
+                Text(state.user.email, style: grayTextTheme.copyWith(
                   fontSize: 18,
                   fontWeight: medium,
                 )),
@@ -143,7 +143,7 @@ class _ProfilePageState extends State<ProfilePage>{
             ));
           } else if (state is AuthInitial){
             Navigator.pushNamedAndRemoveUntil(
-                context, '/landing-page', (route) => (route == '/landing-page'));
+                context, '/landing-page', (route) => false);
             Navigator.push(
                 context, MaterialPageRoute(
                 builder: (context) => LoginPage(viewState: 0))
