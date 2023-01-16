@@ -66,10 +66,11 @@ int getsum(List<LogModel> loglist){
   }return sum;
 }
 
-int getsumOfPastDays(
-  List<LogModel> loglist,
-  int daysBefore,
-  ){
+int getdataOfPastDays(
+    List<LogModel> loglist,
+    int daysBefore,
+    bool income,
+    ){
   DateTime requestedDate = DateTime.now().subtract(Duration(days: daysBefore));
   int sum = 0;
   for(int i = 0; i < loglist.length; i++){
@@ -77,34 +78,18 @@ int getsumOfPastDays(
         && loglist[i].waktu.month == requestedDate.month
         && loglist[i].waktu.year == requestedDate.year
     ){
-      if (loglist[i].keterangan == "Pendapatan"){
-        sum -= loglist[i].nilai;
+      if (income){
+        if (loglist[i].keterangan == "Pendapatan"){
+          sum += loglist[i].nilai;
+        }
       }
       else{
-        sum += loglist[i].nilai;
+        if (loglist[i].keterangan != "Pendapatan"){
+          sum += loglist[i].nilai;
+        }
       }
     }
   }return sum;
-}
-
-double getMax(
-  List<double> doubleList
-){
-  if (doubleList.isEmpty){
-    return 0;
-  }
-  else if (doubleList.length == 1) {
-    return doubleList[0];
-  }
-  else{
-    double comparator = doubleList[0];
-    for(int i = 1; i < doubleList.length; i++){
-      if (comparator < doubleList[i]){
-        comparator = doubleList[i];
-      }
-    }
-    return comparator;
-  }
 }
 
 String getDayName(

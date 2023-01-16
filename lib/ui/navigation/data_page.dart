@@ -39,15 +39,21 @@ class _DataPageState extends State<DataPage>{
               List<BarChartGroupData> _retval = [];
 
               for (int daysBefore = 6; daysBefore >= 0; daysBefore--){
-                double y = getsumOfPastDays(state.logs, daysBefore).toDouble() * (-1);
+                double y = getdataOfPastDays(state.logs, daysBefore, false).toDouble() * (-1);
+                double y2 = getdataOfPastDays(state.logs, daysBefore, true).toDouble();
 
                 _retval.add(
                   BarChartGroupData(
+                    groupVertically: true,
                       x: 6 - daysBefore.toInt(),
                       barRods: [
                         BarChartRodData(
                           toY: y,
-                          color: y > 0? green : red ,
+                          color: red,
+                        ),
+                        BarChartRodData(
+                          toY: y2,
+                          color: green,
                         )
                       ]
                   ),
@@ -90,27 +96,41 @@ class _DataPageState extends State<DataPage>{
             double maxVal = 0;
 
             for (int daysBefore = 6; daysBefore >= 0; daysBefore--) {
-              double y = getsumOfPastDays(state.logs, daysBefore).toDouble() *
-                  (-1);
+              double y = getdataOfPastDays(state.logs, daysBefore, false).toDouble().abs();
+              maxVal = max(maxVal, y.abs());
+            }
+            for (int daysBefore = 6; daysBefore >= 0; daysBefore--) {
+              double y = getdataOfPastDays(state.logs, daysBefore, true).toDouble().abs();
               maxVal = max(maxVal, y.abs());
             }
 
-            return AspectRatio(
-              aspectRatio: 2,
-              child: BarChart(
-                BarChartData(
-                  baselineY: 0,
-                  maxY: maxVal,
-                  minY: maxVal*(-1),
-                  barGroups: _chartGroups(),
-                  borderData: FlBorderData(
-                      border: const Border(bottom: BorderSide(), left: BorderSide())),
-                  gridData: FlGridData(show: true),
-                  titlesData: FlTitlesData(
-                    bottomTitles: AxisTitles(sideTitles: _bottomTitles),
-                    leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                    topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                    rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            maxVal += 1/4 * maxVal;
+
+            return Container(
+              padding: EdgeInsets.only(right: 20, top: 20, bottom: 20),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(
+                    width: 1
+                    ),
+                ),
+              child: AspectRatio(
+                aspectRatio: 2,
+                child: BarChart(
+                  BarChartData(
+                    baselineY: 0,
+                    maxY: maxVal,
+                    minY: maxVal*(-1),
+                    barGroups: _chartGroups(),
+                    borderData: FlBorderData(
+                        border: const Border(bottom: BorderSide(), left: BorderSide())),
+                    gridData: FlGridData(show: true),
+                    titlesData: FlTitlesData(
+                      bottomTitles: AxisTitles(sideTitles: _bottomTitles),
+                      leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 50, interval: maxVal/4)),
+                      topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                      rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                    ),
                   ),
                 ),
               ),
@@ -131,7 +151,7 @@ class _DataPageState extends State<DataPage>{
               dataList.add(
                   FlSpot(
                       6 - daysBefore.toDouble(),
-                      getsumOfPastDays(state.logs, daysBefore)
+                      getdataOfPastDays(state.logs, daysBefore, false)
                           .toDouble()));
             }
 
