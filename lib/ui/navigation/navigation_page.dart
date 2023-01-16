@@ -35,7 +35,7 @@ class _NavState extends State<NavPage>{
 
   Widget bottomNavBarAlt(){
     return NavigationBar(
-      height: 70,
+      height: 100,
       backgroundColor: Colors.white,
       selectedIndex: currentIndex,
       destinations: [
@@ -125,8 +125,14 @@ class _NavState extends State<NavPage>{
               },);
   }
 
-  final tabs = [
-    HomePage(),
+  void toLogs(){
+    setState(() {
+      currentIndex = 2;
+    });
+  }
+
+  late final tabs = [
+    HomePage(callback: toLogs,),
     DataPage(),
     LogsPage(),
     SettingsPage(),
@@ -140,6 +146,7 @@ class _NavState extends State<NavPage>{
   ];
 
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: bottomNavBarAlt(),

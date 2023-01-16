@@ -23,7 +23,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin{
   @override
   void initState(){
     currentOpacity = 1;
-    Timer(const Duration(seconds: 1), (){
+    Timer(const Duration(seconds: 2), (){
       User? user = FirebaseAuth.instance.currentUser;
       if (user == null){
         Navigator.pushNamedAndRemoveUntil(
@@ -35,10 +35,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin{
         Navigator.pushNamedAndRemoveUntil(
             context, '/nav-page', (route) => false);
       }
-      Navigator.pushNamedAndRemoveUntil(
-          context, '/landing-page', (route) => false);
     });
-    super.initState();
   }
 
   Widget build(BuildContext context) {
@@ -48,7 +45,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin{
         backgroundColor: white,
         body: AnimatedOpacity(
           opacity: currentOpacity,
-          duration: Duration(milliseconds: 1500),
+          duration: Duration(milliseconds: 1000),
           child: Container(
             width: double.infinity,
             height: double.infinity,

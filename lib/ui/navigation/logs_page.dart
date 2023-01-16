@@ -53,7 +53,8 @@ class _LogsPageState extends State<LogsPage> with TickerProviderStateMixin{
 
             if (logs.isNotEmpty){
               return Container(
-                height: ScreenSize.height - 260,
+                margin: EdgeInsets.symmetric(horizontal: 10),
+                height: ScreenSize.height - 310,
                 child: ListView.builder(
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
@@ -109,6 +110,7 @@ class _LogsPageState extends State<LogsPage> with TickerProviderStateMixin{
         }
     );
   }
+
   Widget tabBar(){
       return Stack(
         alignment: Alignment.topLeft,
@@ -138,6 +140,8 @@ class _LogsPageState extends State<LogsPage> with TickerProviderStateMixin{
             },
           ),
           Container(
+
+              margin: EdgeInsets.symmetric(horizontal: 10),
            child: Column(
             children: [
               SizedBox(height: 40,),
@@ -160,7 +164,7 @@ class _LogsPageState extends State<LogsPage> with TickerProviderStateMixin{
         children: [
           SizedBox(height: 85,),
           openingPlate(),
-          SizedBox(height: 10,),
+          SizedBox(height: 30,),
           tabBar(),
           listOfLogs(),
         ],
